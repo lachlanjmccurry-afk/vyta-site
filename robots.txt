@@ -1,2 +1,5 @@
+# Review copy: not ready for search engines. When going live, replace with:
+#   User-agent: *
+#   Disallow: /styleguide.html
 User-agent: *
-Disallow: /styleguide.html
+Disallow: /
