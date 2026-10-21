@@ -3,85 +3,239 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vyta — See where your business stands</title>
+  <title>Vyta | See where your business stands</title>
   <meta name="description" content="Vyta reads your Xero file and shows the early warning signs of financial trouble, and whether the business can be turned around.">
-  <link rel="stylesheet" href="styles.css">
+  <!-- site:head -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <meta name="theme-color" content="#0F1A2A">
+  <!-- /site:head -->
+  <style>
+    /* Home page only. Rebuilt in step 2. */
+    .home-hero { padding-block: var(--s8) var(--s9); background: linear-gradient(var(--white) 55%, var(--bg)); }
+    .home-hero .split { grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr); }
+    .home-hero h1 { margin-block: var(--s4) var(--s5); }
+    .home-hero .actions { margin-top: var(--s6); }
+    .home-hero .fine { margin-top: var(--s4); font-size: var(--t-sm); color: var(--muted); display: flex; align-items: center; gap: var(--s2); }
+    .home-hero .fine::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+    .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+    .steps li { display: flex; flex-direction: column; gap: var(--s3); padding-top: var(--s5); border-top: 2px solid var(--navy); }
+    .steps .n { font-size: var(--t-2xl); font-weight: 800; color: var(--teal); line-height: 1; font-variant-numeric: tabular-nums; }
+    .steps p { color: var(--muted); }
+    .points { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+    .points li { display: flex; flex-direction: column; gap: var(--s2); padding-block: var(--s5); border-top: 1px solid var(--line); }
+    .points li:first-child { border-top: 0; padding-top: 0; }
+    .points p { color: var(--muted); }
+    .split-top { align-items: start; }
+    .split-top .stack p { max-width: 34em; }
+    .waitlist-panel { background: var(--navy-2); border-radius: var(--r-panel); padding: var(--s6); }
+  </style>
 </head>
 <body>
-
-  <header class="site-header">
+  <!-- site:header -->
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header" id="site-header">
     <div class="wrap header-inner">
-      <a class="logo" href="#top" aria-label="Vyta home">
-        <span class="mark">V</span>
-        <span class="word">Vyta</span>
+      <a class="brand" href="index.html" aria-current="page" aria-label="Vyta home">
+        <img src="assets/logo.png" alt="Vyta" width="78" height="34">
       </a>
-      <nav class="nav" aria-label="Main">
-        <a href="#how">How it works</a>
-        <a href="#owners">For owners</a>
-        <a href="#firms">For firms</a>
-        <a class="btn btn-small" href="#waitlist">Join the waitlist</a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        Menu
+      </button>
+
+      <nav class="nav" id="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-product" data-section="product">Product</button>
+            <div class="menu menu-wide" id="menu-product">
+              <div class="menu-group">
+                <p class="menu-label">The health check</p>
+                <a href="product.html">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+                  <span class="t">Product overview</span><span class="d">Everything Vyta does, on one page</span>
+                </a>
+                <a href="health-check.html">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 16a8.5 8.5 0 1 1 17 0"/><path d="M12 16l4.5-5"/></svg></span>
+                  <span class="t">Distress &amp; Viability scores</span><span class="d">Two scores, a verdict and what to do next</span>
+                </a>
+                <a href="indicators.html">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="1.5"/><circle cx="5" cy="12" r="1.5"/><circle cx="5" cy="18" r="1.5"/><path d="M10 6h10M10 12h10M10 18h10"/></svg></span>
+                  <span class="t">21 warning signs</span><span class="d">Every indicator, explained in plain English</span>
+                </a>
+                <a href="reports.html">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
+                  <span class="t">PDF report</span><span class="d">A clear report to take to your accountant</span>
+                </a>
+              </div>
+              <div class="menu-group">
+                <p class="menu-label">Tools</p>
+                <a href="cash.html">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><rect x="4" y="5" width="3.5" height="11" rx=".8"/><rect x="10.25" y="9" width="3.5" height="4" rx=".8"/><rect x="16.5" y="12" width="3.5" height="5" rx=".8"/></svg></span>
+                  <span class="t">Where has the cash gone?</span><span class="d">The year&rsquo;s cash, step by step</span>
+                </a>
+                <a href="what-if.html">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg></span>
+                  <span class="t">What if?</span><span class="d">Test price, cost and ATO plans before you commit</span>
+                </a>
+                <a href="history.html">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg></span>
+                  <span class="t">History</span><span class="d">Daily updates and what changed since last time</span>
+                </a>
+                <a href="find-an-adviser.html">
+                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 20a6.5 6.5 0 0 0-3-5.5"/></svg></span>
+                  <span class="t">Find an adviser</span><span class="d">The right kind of help for your situation</span>
+                </a>
+              </div>
+              <div class="menu-feature">
+                <span class="eyebrow">Live demo</span>
+                <strong>Click through the real dashboard with two made-up businesses.</strong>
+                <span>No sign-up and no Xero needed.</span>
+                <a class="btn btn-light btn-sm" href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">Open the demo</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-who" data-section="who">Who it&rsquo;s for</button>
+            <div class="menu menu-narrow" id="menu-who">
+              <a href="for-owners.html">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v10h16V10"/><path d="M2.5 10 5 4h14l2.5 6z"/><path d="M10 20v-5h4v5"/></svg></span>
+                <span class="t">Business owners</span><span class="d">Know where you stand while there&rsquo;s time to act</span>
+              </a>
+              <a href="for-accountants.html">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8.5 6.5h7M8.5 11h1M12 11h1M15.5 11h0M8.5 14.5h1M12 14.5h1M8.5 18h1M12 18h1M15.5 14.5v3.5"/></svg></span>
+                <span class="t">Accountants &amp; bookkeepers</span><span class="d">Spot the clients who are slipping, early</span>
+              </a>
+              <a href="for-insolvency.html">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"/></svg></span>
+                <span class="t">Insolvency &amp; restructuring</span><span class="d">Meet businesses while a turnaround is possible</span>
+              </a>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="security.html">Security</a></li>
+          <li class="nav-item"><a class="nav-link" href="resources.html">Guides</a></li>
+          <li class="nav-item">
+            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-company" data-section="company">Company</button>
+            <div class="menu menu-narrow" id="menu-company">
+              <a href="about.html">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V12M10 20V8M15 20V10"/><path d="M15 10c0-3.5 2.5-6 6-6 0 3.5-2.5 6-6 6z"/></svg></span>
+                <span class="t">About Vyta</span><span class="d">Why we built it and who&rsquo;s behind it</span>
+              </a>
+              <a href="contact.html">
+                <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg></span>
+                <span class="t">Contact</span><span class="d">Questions, partnerships and press</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+
+        <div class="header-actions">
+          <a class="btn btn-secondary btn-sm" href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">
+            Try the demo
+            <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            <span class="visually-hidden">(opens in a new tab)</span>
+          </a>
+          <a class="btn btn-sm" href="index.html#waitlist">Join the waitlist</a>
+        </div>
       </nav>
     </div>
   </header>
+  <!-- /site:header -->
 
-  <main id="top">
-
-    <!-- Hero -->
-    <section class="hero">
-      <div class="wrap hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow">Early warning for small businesses</p>
+  <main id="main">
+    <section class="home-hero">
+      <div class="wrap split">
+        <div>
+          <span class="eyebrow">Early warning for small businesses</span>
           <h1>See where your business stands, before it&rsquo;s too late.</h1>
           <p class="lede">Vyta reads your Xero file and tells you, in plain English, whether money trouble is building, and whether the business is worth fighting for. No jargon, no spreadsheets, no waiting for the year-end accounts.</p>
-          <div class="hero-actions">
+          <div class="actions">
             <a class="btn" href="#waitlist">Join the waitlist</a>
-            <a class="link" href="#how">How it works &rarr;</a>
+            <a class="btn btn-secondary" href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">
+              Try the demo
+              <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              <span class="visually-hidden">(opens in a new tab)</span>
+            </a>
           </div>
           <p class="fine">Read-only. Vyta never changes anything in your Xero file.</p>
         </div>
 
-        <aside class="sample" aria-label="Example of a Vyta result">
-          <p class="sample-label">Example result</p>
-          <p class="sample-verdict">Under pressure, but worth saving.</p>
-          <div class="sample-scores">
-            <div class="score">
-              <span class="score-label">Distress</span>
-              <span class="score-num">58<span>/100</span></span>
-              <span class="score-band"><i class="dot amber"></i>Elevated</span>
+        <figure style="margin:0">
+          <div class="screen" role="img" aria-label="The Vyta Overview page for a made-up business: Distress 89 out of 100 (High), Viability 21 out of 100 (Weak), recommended pathway Likely liquidation, with the top three issues listed.">
+            <div class="screen-side" aria-hidden="true">
+              <img src="assets/logo-white.png" alt="">
+              <span class="on">Overview</span><span>Details</span><span>Get help</span>
+              <small>More tools</small>
+              <span>Cash</span><span>What if?</span><span>History</span>
+              <div class="conn"><b>Demo version</b>Two made-up businesses.</div>
             </div>
-            <div class="score">
-              <span class="score-label">Viability</span>
-              <span class="score-num">71<span>/100</span></span>
-              <span class="score-band"><i class="dot green"></i>Strong</span>
+            <div class="screen-main" aria-hidden="true">
+              <div class="screen-top">
+                <span class="who">SC</span><span class="biz">TEST &ndash; Stressed Co</span><span class="per">12 months to Sep 2026</span><span class="sp"></span><span class="exp">Export PDF</span>
+              </div>
+              <div class="screen-body">
+                <div>
+                  <div class="eb">Overview</div>
+                  <h4>Stressed Co is in serious financial distress, and the business isn&rsquo;t making money.</h4>
+                </div>
+                <div class="screen-scores">
+                  <div class="screen-card">
+                    <div class="lab">Distress <span class="pill red">High</span></div>
+                    <div class="big">89<small> / 100</small></div>
+                    <div class="band" style="--at:89"><i class="green" style="flex:30"></i><i class="amber" style="flex:30"></i><i class="red" style="flex:40"></i><b class="red"></b></div>
+                  </div>
+                  <div class="screen-card">
+                    <div class="lab">Viability <span class="pill red">Weak</span></div>
+                    <div class="big">21<small> / 100</small></div>
+                    <div class="band" style="--at:21"><i class="red" style="flex:40"></i><i class="amber" style="flex:25"></i><i class="green" style="flex:35"></i><b class="red"></b></div>
+                  </div>
+                </div>
+                <div class="screen-path">
+                  <div>
+                    <div class="eb">Recommended pathway</div>
+                    <b>Likely liquidation</b>
+                    <p>A registered insolvency practitioner can advise on the safest way to close or sell.</p>
+                  </div>
+                  <span>Get help</span>
+                </div>
+                <div class="screen-issues">
+                  <ol>
+                    <li><span class="code">V5</span><em>Not making money, even before one-off costs</em><span class="pill red">&minus;9.4%</span></li>
+                    <li><span class="code">V1</span><em>Owes more than it owns</em><span class="pill red">&minus;1.16</span></li>
+                    <li><span class="code">V4</span><em>Overheads use 137% of gross profit</em><span class="pill red">136.9%</span></li>
+                  </ol>
+                </div>
+              </div>
             </div>
           </div>
-          <ul class="sample-list">
-            <li><span class="n">1</span>The tax bill has grown for four months running.</li>
-            <li><span class="n">2</span>Customers are taking 62 days to pay, up from 38.</li>
-            <li><span class="n">3</span>Margins are holding up well. The core business works.</li>
-          </ul>
-        </aside>
+          <figcaption class="screen-caption">Example only: a made-up test business, not a real company.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <!-- How it works -->
     <section id="how" class="section">
       <div class="wrap">
-        <p class="eyebrow">How it works</p>
-        <h2>Three steps, about ten minutes.</h2>
-        <ol class="steps">
-          <li class="step">
-            <span class="step-num">1</span>
+        <div class="section-head">
+          <span class="eyebrow">How it works</span>
+          <h2>Three steps, about ten minutes.</h2>
+        </div>
+        <ol class="steps grid-3">
+          <li>
+            <span class="n">1</span>
             <h3>Connect Xero</h3>
             <p>Sign in to Xero and give Vyta permission to read your books. It can look, but it can&rsquo;t touch: nothing is ever changed or sent from your file.</p>
           </li>
-          <li class="step">
-            <span class="step-num">2</span>
+          <li>
+            <span class="n">2</span>
             <h3>Vyta reads the last twelve months</h3>
             <p>It checks the same warning signs an insolvency practitioner or the ATO would look for: cash running short, tax debts piling up, bills going unpaid, customers paying late.</p>
           </li>
-          <li class="step">
-            <span class="step-num">3</span>
+          <li>
+            <span class="n">3</span>
             <h3>You get two honest answers</h3>
             <p>How much trouble the business is in, and whether it can recover. Each comes with the reasons behind it, the three things to deal with first, and what&rsquo;s already going well.</p>
           </li>
@@ -89,142 +243,144 @@
       </div>
     </section>
 
-    <!-- For owners -->
-    <section id="owners" class="section section-paper">
-      <div class="wrap split">
-        <div>
-          <p class="eyebrow">For business owners</p>
+    <section id="owners" class="section section-wash">
+      <div class="wrap split split-top">
+        <div class="stack">
+          <span class="eyebrow">For business owners</span>
           <h2>You know something&rsquo;s not right. Vyta tells you what, and how serious it is.</h2>
           <p>Most owners who end up in real trouble saw it coming. They just couldn&rsquo;t tell whether a bad quarter was a rough patch or the start of something worse, and by the time the accountant looked, the options had narrowed.</p>
           <p>Vyta gives you that answer now, while there&rsquo;s still time to act on it.</p>
         </div>
         <ul class="points">
-          <li>
-            <h3>A straight answer</h3>
-            <p>Not a wall of ratios. A short summary of where you stand and why, written the way a good adviser would say it across the table.</p>
-          </li>
-          <li>
-            <h3>What to fix first</h3>
-            <p>The three issues doing the most damage, so you know where to spend your energy this week.</p>
-          </li>
-          <li>
-            <h3>Room to try things</h3>
-            <p>See what happens if you raise prices, cut costs, chase debtors faster or set up a payment plan with the ATO, before you commit to any of it.</p>
-          </li>
-          <li>
-            <h3>Something to bring to your accountant</h3>
-            <p>Export a clear report so the conversation starts from the facts, not from a shoebox of statements.</p>
-          </li>
+          <li><h3>A straight answer</h3><p>Not a wall of ratios. A short summary of where you stand and why, written the way a good adviser would say it across the table.</p></li>
+          <li><h3>What to fix first</h3><p>The three issues doing the most damage, so you know where to spend your energy this week.</p></li>
+          <li><h3>Room to try things</h3><p>See what happens if you raise prices, cut costs, chase debtors faster or set up a payment plan with the ATO, before you commit to any of it.</p></li>
+          <li><h3>Something to bring to your accountant</h3><p>Export a clear report so the conversation starts from the facts, not from a shoebox of statements.</p></li>
         </ul>
       </div>
     </section>
 
-    <!-- For firms -->
     <section id="firms" class="section">
-      <div class="wrap split">
-        <div>
-          <p class="eyebrow">For accounting and restructuring firms</p>
+      <div class="wrap split split-top">
+        <div class="stack">
+          <span class="eyebrow">For accounting and restructuring firms</span>
           <h2>Find the businesses that need you, early.</h2>
           <p>By the time most clients ask for help, the cash is gone and the choices are few. The signs were usually sitting in their Xero file months earlier.</p>
           <p>Vyta reads those signs across your client list, so you can pick up the phone while a turnaround is still possible, and tell the difference between a client worth restructuring and one that needs a different conversation.</p>
         </div>
         <ul class="points">
-          <li>
-            <h3>See who&rsquo;s slipping</h3>
-            <p>Every connected client scored for distress, so the ones heading for trouble rise to the top of the list.</p>
-          </li>
-          <li>
-            <h3>Know who can be saved</h3>
-            <p>A separate viability score shows whether the underlying business still works, which helps you choose between a turnaround, a safe harbour plan or a wind-down.</p>
-          </li>
-          <li>
-            <h3>Grounded in the indicators you already use</h3>
-            <p>Built around the ASIC v Plymin indicators and ATO rules, with every result showing the figures behind it. Nothing is a black box.</p>
-          </li>
-          <li>
-            <h3>A better first meeting</h3>
-            <p>Walk in with the cash story, the tax position and the top issues already laid out, and spend the time on the plan.</p>
-          </li>
+          <li><h3>See who&rsquo;s slipping</h3><p>Every connected client scored for distress, so the ones heading for trouble rise to the top of the list.</p></li>
+          <li><h3>Know who can be saved</h3><p>A separate viability score shows whether the underlying business still works, which helps you choose between a turnaround, a safe harbour plan or a wind-down.</p></li>
+          <li><h3>Grounded in the indicators you already use</h3><p>Built around the ASIC v Plymin indicators and ATO rules, with every result showing the figures behind it. Nothing is a black box.</p></li>
+          <li><h3>A better first meeting</h3><p>Walk in with the cash story, the tax position and the top issues already laid out, and spend the time on the plan.</p></li>
         </ul>
       </div>
     </section>
 
-    <!-- Waitlist -->
     <section id="waitlist" class="section section-navy">
-      <div class="wrap waitlist">
-        <div class="waitlist-copy">
+      <div class="wrap grid-2">
+        <div class="stack">
+          <span class="eyebrow">Early access</span>
           <h2>Be one of the first to use Vyta.</h2>
           <p>We&rsquo;re opening Vyta to a small group of owners and firms first. Leave your details and we&rsquo;ll be in touch when there&rsquo;s a spot for you. No newsletters, no spam.</p>
         </div>
-
-        <!-- TODO: point action at the form service once chosen (e.g. Formspree or Netlify Forms) -->
-        <form class="form" id="waitlist-form" action="#" method="post" novalidate>
-          <div class="field">
-            <label for="name">Your name</label>
-            <input id="name" name="name" type="text" autocomplete="name" required>
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required>
-          </div>
+        <!-- Not connected to a form service yet (step 7) -->
+        <form class="form waitlist-panel" id="waitlist-form" novalidate>
+          <div class="field"><label for="wl-name">Your name</label><input class="input" id="wl-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="wl-email">Email</label><input class="input" id="wl-email" name="email" type="email" autocomplete="email" required></div>
           <fieldset class="field">
             <legend>Which describes you?</legend>
-            <label class="choice">
-              <input type="radio" name="role" value="owner" required>
-              <span>I&rsquo;m a business owner</span>
-            </label>
-            <label class="choice">
-              <input type="radio" name="role" value="firm">
-              <span>I&rsquo;m at a firm</span>
-            </label>
+            <div class="choices">
+              <label class="choice"><input type="radio" id="wl-owner" name="role" value="owner" required> I run a business</label>
+              <label class="choice"><input type="radio" id="wl-firm" name="role" value="firm"> I work at a firm</label>
+            </div>
           </fieldset>
-          <p class="form-error" id="form-error" role="alert" hidden>Please fill in your name, a valid email and which one describes you.</p>
+          <p class="form-error" id="wl-error" role="alert" hidden>Please add your name, a valid email and which one describes you.</p>
           <button class="btn btn-light" type="submit">Join the waitlist</button>
-          <p class="form-thanks" id="form-thanks" role="status" hidden>Thanks, you&rsquo;re on the list. We&rsquo;ll be in touch.</p>
+          <p class="form-thanks" id="wl-thanks" role="status" hidden>Thanks, you&rsquo;re on the list. We&rsquo;ll be in touch.</p>
         </form>
       </div>
     </section>
-
   </main>
 
+  <!-- site:footer -->
+  <section class="cta-band" aria-labelledby="cta-title">
+    <div class="wrap">
+      <div>
+        <h2 id="cta-title">Find out where your business stands.</h2>
+        <p>Vyta is opening to a small group of owners and firms first. Try the demo now, or join the waitlist and we&rsquo;ll be in touch.</p>
+      </div>
+      <div class="actions">
+        <a class="btn btn-light" href="index.html#waitlist">Join the waitlist</a>
+        <a class="btn btn-ghost-light" href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">
+          Try the demo
+          <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          <span class="visually-hidden">(opens in a new tab)</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <footer class="site-footer">
-    <div class="wrap footer-inner">
-      <a class="logo logo-small" href="#top" aria-label="Vyta home">
-        <span class="mark">V</span>
-        <span class="word">Vyta</span>
-      </a>
-      <nav class="footer-links" aria-label="Footer">
-        <a href="#">Privacy policy</a>
+    <div class="wrap footer-top">
+      <div class="footer-brand">
+        <img src="assets/logo-white.png" alt="Vyta" width="78" height="34" loading="lazy">
+        <p>Early warning for Australian small businesses. Vyta reads your Xero file and shows whether money trouble is building, and whether the business can recover.</p>
+        <span class="readonly">Read-only connection to Xero</span>
+      </div>
+      <nav class="footer-col" aria-label="Product">
+        <h3>Product</h3>
+        <ul>
+          <li><a href="product.html">Overview</a></li>
+          <li><a href="health-check.html">Distress &amp; Viability</a></li>
+          <li><a href="indicators.html">21 warning signs</a></li>
+          <li><a href="cash.html">Where has the cash gone?</a></li>
+          <li><a href="what-if.html">What if?</a></li>
+          <li><a href="history.html">History</a></li>
+          <li><a href="find-an-adviser.html">Find an adviser</a></li>
+          <li><a href="reports.html">PDF report</a></li>
+        </ul>
       </nav>
-      <p class="footer-note">&copy; 2026 Vyta. Vyta gives general information, not financial or legal advice.</p>
+      <nav class="footer-col" aria-label="Who it's for">
+        <h3>Who it&rsquo;s for</h3>
+        <ul>
+          <li><a href="for-owners.html">Business owners</a></li>
+          <li><a href="for-accountants.html">Accountants &amp; bookkeepers</a></li>
+          <li><a href="for-insolvency.html">Insolvency &amp; restructuring</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Guides">
+        <h3>Guides</h3>
+        <ul>
+          <li><a href="resources.html">All guides</a></li>
+          <li><a href="security.html">Security &amp; your data</a></li>
+          <li><a href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">Live demo<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Company">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html#waitlist">Join the waitlist</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-col" aria-label="Legal">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="terms.html">Terms of use</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="wrap footer-bottom">
+      <p>&copy; 2026 Vyta</p>
+      <p>Vyta gives general information, not financial, legal or insolvency advice. Speak to a qualified adviser before acting on it.</p>
+      <p>Made in Australia</p>
     </div>
   </footer>
-
-  <script>
-    // Checks the waitlist form before it's sent. Until a form service is connected, it just shows the thank-you message.
-    (function () {
-      var form = document.getElementById('waitlist-form');
-      var error = document.getElementById('form-error');
-      var thanks = document.getElementById('form-thanks');
-      form.addEventListener('submit', function (e) {
-        var name = form.elements['name'];
-        var email = form.elements['email'];
-        var ok = name.value.trim() !== '' &&
-                 email.validity.valid && email.value.trim() !== '' &&
-                 form.querySelector('input[name="role"]:checked');
-        if (!ok) {
-          e.preventDefault();
-          error.hidden = false;
-          return;
-        }
-        error.hidden = true;
-        if (form.getAttribute('action') === '#') {
-          e.preventDefault();
-          form.querySelectorAll('.field, button').forEach(function (el) { el.hidden = true; });
-          thanks.hidden = false;
-        }
-      });
-    })();
-  </script>
+  <script src="js/site.js" defer></script>
+  <!-- /site:footer -->
 </body>
 </html>
