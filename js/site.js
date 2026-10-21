@@ -45,19 +45,26 @@
     });
   }
 
-  // Waitlist form: checks the fields and shows a thank-you. Not connected to a form service yet.
-  var form = document.getElementById("waitlist-form");
-  if (form) {
+  // Waitlist and contact forms (class "js-form"): check the required fields, then show the thank-you.
+  // Not connected to a form service yet, so nothing is sent or saved (step 7: set the form's action).
+  document.querySelectorAll("form.js-form").forEach(function (form) {
+    var error = form.querySelector("[data-error]");
+    var thanks = form.querySelector("[data-thanks]");
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var name = form.querySelector("#wl-name").value.trim();
-      var email = form.querySelector("#wl-email").value.trim();
-      var role = form.querySelector('input[name="role"]:checked');
-      var ok = name && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && role;
-      document.getElementById("wl-error").hidden = !!ok;
+      var ok = true;
+      form.querySelectorAll("[required]").forEach(function (el) {
+        var good;
+        if (el.type === "radio") good = !!form.querySelector('input[name="' + el.name + '"]:checked');
+        else if (el.type === "email") good = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+        else good = el.value.trim() !== "";
+        if (el.type !== "radio") el.setAttribute("aria-invalid", good ? "false" : "true");
+        if (!good) ok = false;
+      });
+      if (error) error.hidden = ok;
       if (!ok) return;
-      form.querySelectorAll(".field, button").forEach(function (el) { el.hidden = true; });
-      document.getElementById("wl-thanks").hidden = false;
+      form.querySelectorAll(".field, button, .form-note").forEach(function (el) { el.hidden = true; });
+      if (thanks) { thanks.hidden = false; thanks.focus(); }
     });
-  }
+  });
 })();

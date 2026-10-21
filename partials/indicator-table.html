@@ -1,0 +1,41 @@
+<h3 id="distress-indicators">Distress indicators</h3>
+<p class="muted" style="margin-bottom:var(--s4)">How much financial trouble is the business in right now? Higher is worse.</p>
+<div class="table-wrap">
+  <table class="table">
+    <caption class="visually-hidden">Distress indicators</caption>
+    <thead><tr><th>ID</th><th>Indicator and what it checks</th><th>Warning levels</th><th style="text-align:right">Weight</th></tr></thead>
+    <tbody>
+      <tr><td><span class="code">D1</span></td><td><b>Current ratio</b>Whether short-term assets (cash, money owed by customers, stock) cover the debts due within a year.</td><td class="lv"><span><span class="pill amber">Amber</span> 1.20 or below</span><span style="margin-top:6px"><span class="pill red">Red</span> 1.00 or below</span></td><td class="w">8</td></tr>
+      <tr><td><span class="code">D2</span></td><td><b>Quick ratio</b>The same test using only cash and money owed by customers, the things that turn into cash quickly.</td><td class="lv"><span><span class="pill amber">Amber</span> 1.00 or below</span><span style="margin-top:6px"><span class="pill red">Red</span> 0.70 or below</span></td><td class="w">8</td></tr>
+      <tr><td><span class="code">D3</span></td><td><b>Cash runway</b>How many months the cash would last at the recent rate it has been going out.</td><td class="lv"><span><span class="pill amber">Amber</span> 6 months or below</span><span style="margin-top:6px"><span class="pill red">Red</span> 3 months or below</span></td><td class="w">10</td></tr>
+      <tr><td><span class="code">D4</span></td><td><b>ATO debt rising</b>How many months in a row the amount owed to the ATO has grown.</td><td class="lv"><span><span class="pill amber">Amber</span> 2 months running or more</span><span style="margin-top:6px"><span class="pill red">Red</span> 3 months running or more</span></td><td class="w">12</td></tr>
+      <tr><td><span class="code">D5</span></td><td><b>Bank debt growth</b>How much bank loans and overdraft have grown over the last six months.</td><td class="lv"><span><span class="pill amber">Amber</span> 10% or above</span><span style="margin-top:6px"><span class="pill red">Red</span> 25% or above</span></td><td class="w">7</td></tr>
+      <tr><td><span class="code">D6</span></td><td><b>Overdraft use</b>How much of the approved overdraft limit is being used. Needs the limit from the owner.</td><td class="lv"><span><span class="pill amber">Amber</span> 85% or above</span><span style="margin-top:6px"><span class="pill red">Red</span> 100% or above</span></td><td class="w">6</td></tr>
+      <tr><td><span class="code">D7</span></td><td><b>Creditor days</b>How long, on average, suppliers are waiting to be paid.</td><td class="lv"><span><span class="pill amber">Amber</span> 60 days or above</span><span style="margin-top:6px"><span class="pill red">Red</span> 90 days or above</span></td><td class="w">7</td></tr>
+      <tr><td><span class="code">D8</span></td><td><b>Creditors 90+ days</b>The share of unpaid supplier bills that are more than 90 days overdue.</td><td class="lv"><span><span class="pill amber">Amber</span> 15% or above</span><span style="margin-top:6px"><span class="pill red">Red</span> 30% or above</span></td><td class="w">7</td></tr>
+      <tr><td><span class="code">D9</span></td><td><b>Debtor days trend</b>Whether customers are taking longer to pay than they were three months ago.</td><td class="lv"><span><span class="pill amber">Amber</span> +10 days or more</span><span style="margin-top:6px"><span class="pill red">Red</span> +20 days or more</span></td><td class="w">5</td></tr>
+      <tr><td><span class="code">D10</span></td><td><b>Debtors 90+ days</b>The share of money owed by customers that is more than 90 days overdue.</td><td class="lv"><span><span class="pill amber">Amber</span> 15% or above</span><span style="margin-top:6px"><span class="pill red">Red</span> 25% or above</span></td><td class="w">5</td></tr>
+      <tr><td><span class="code">D11</span></td><td><b>Sales up, cash down</b>Months in a row where sales rose but cash fell: growth that is eating cash.</td><td class="lv"><span><span class="pill amber">Amber</span> 2 months running or more</span><span style="margin-top:6px"><span class="pill red">Red</span> 3 months running or more</span></td><td class="w">8</td></tr>
+      <tr><td><span class="code">D12</span></td><td><b>Cash flow ratio</b>Whether a year of trading produced enough cash to cover short-term debts.</td><td class="lv"><span><span class="pill amber">Amber</span> 0.40 or below</span><span style="margin-top:6px"><span class="pill red">Red</span> 0.20 or below</span></td><td class="w">7</td></tr>
+      <tr><td><span class="code">D13</span></td><td><b>Debt to assets</b>Total debts as a share of everything the business owns.</td><td class="lv"><span><span class="pill amber">Amber</span> 0.70 or above</span><span style="margin-top:6px"><span class="pill red">Red</span> 1.00 or above</span></td><td class="w">10</td></tr>
+    </tbody>
+  </table>
+</div>
+<h3 id="viability-indicators" style="margin-top:var(--s8)">Viability indicators</h3>
+<p class="muted" style="margin-bottom:var(--s4)">If the cash problem were fixed, would the business make money? Higher is better.</p>
+<div class="table-wrap">
+  <table class="table">
+    <caption class="visually-hidden">Viability indicators</caption>
+    <thead><tr><th>ID</th><th>Indicator and what it checks</th><th>Warning levels</th><th style="text-align:right">Weight</th></tr></thead>
+    <tbody>
+      <tr><td><span class="code">V1</span></td><td><b>Equity ratio</b>The owners&#x27; stake (net assets) as a share of everything the business owns.</td><td class="lv"><span><span class="pill amber">Amber</span> 0.20 or below</span><span style="margin-top:6px"><span class="pill red">Red</span> 0.00 or below</span></td><td class="w">15</td></tr>
+      <tr><td><span class="code">V2</span></td><td><b>Gross margin</b>What is left from each dollar of sales after the direct cost of making the sale.</td><td class="lv"><span><span class="pill amber">Amber</span> 30% or below</span><span style="margin-top:6px"><span class="pill red">Red</span> 15% or below</span></td><td class="w">15</td></tr>
+      <tr><td><span class="code">V3</span></td><td><b>Margin trend</b>Whether gross margin is improving or slipping compared with the year before. Needs 24 months of data.</td><td class="lv"><span><span class="pill amber">Amber</span> −2.0 pts or below</span><span style="margin-top:6px"><span class="pill red">Red</span> −5.0 pts or below</span></td><td class="w">10</td></tr>
+      <tr><td><span class="code">V4</span></td><td><b>Overheads vs GP</b>How much of the gross profit the running costs use up.</td><td class="lv"><span><span class="pill amber">Amber</span> 90% or above</span><span style="margin-top:6px"><span class="pill red">Red</span> 100% or above</span></td><td class="w">15</td></tr>
+      <tr><td><span class="code">V5</span></td><td><b>Underlying margin</b>Profit before interest, depreciation and one-off costs, as a share of sales. The core test of viability.</td><td class="lv"><span><span class="pill amber">Amber</span> 5% or below</span><span style="margin-top:6px"><span class="pill red">Red</span> 0% or below</span></td><td class="w">20</td></tr>
+      <tr><td><span class="code">V6</span></td><td><b>Revenue trend</b>Sales over the last 12 months compared with the 12 months before.</td><td class="lv"><span><span class="pill amber">Amber</span> -5% or below</span><span style="margin-top:6px"><span class="pill red">Red</span> -15% or below</span></td><td class="w">10</td></tr>
+      <tr><td><span class="code">V7</span></td><td><b>Pipeline cover</b>Open quotes compared with average monthly sales. Needs quotes data.</td><td class="lv"><span><span class="pill amber">Amber</span> 1.00 or below</span><span style="margin-top:6px"><span class="pill red">Red</span> 0.50 or below</span></td><td class="w">5</td></tr>
+      <tr><td><span class="code">V8</span></td><td><b>Long-term cover</b>Long-term assets compared with long-term debts.</td><td class="lv"><span><span class="pill amber">Amber</span> 1.20 or below</span><span style="margin-top:6px"><span class="pill red">Red</span> 1.00 or below</span></td><td class="w">10</td></tr>
+    </tbody>
+  </table>
+</div>

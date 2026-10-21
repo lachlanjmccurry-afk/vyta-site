@@ -144,7 +144,7 @@
             <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
             <span class="visually-hidden">(opens in a new tab)</span>
           </a>
-          <a class="btn btn-sm" href="index.html#waitlist">Join the waitlist</a>
+          <a class="btn btn-sm" href="waitlist.html">Join the waitlist</a>
         </div>
       </nav>
     </div>
@@ -338,21 +338,21 @@
         <div class="stack">
           <span class="eyebrow">Waitlist form</span>
           <h2>Be one of the first to use Vyta.</h2>
-          <p>How the form looks on the navy band. It checks the fields and says thank you; it isn&rsquo;t connected to a form service yet (step 7).</p>
+          <p>How the form looks on the navy band. It checks the fields and says thank you; it isn&rsquo;t connected to a form service yet.</p>
         </div>
-        <form class="form" id="waitlist-form" novalidate>
-          <div class="field"><label for="wl-name">Your name</label><input class="input" id="wl-name" name="name" type="text" autocomplete="name" required></div>
-          <div class="field"><label for="wl-email">Email</label><input class="input" id="wl-email" name="email" type="email" autocomplete="email" required></div>
+        <form class="form js-form" id="sg-form" novalidate>
+          <div class="field"><label for="sg-name">Your name</label><input class="input" id="sg-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="sg-email">Email</label><input class="input" id="sg-email" name="email" type="email" autocomplete="email" required></div>
           <fieldset class="field">
             <legend>Which describes you?</legend>
             <div class="choices">
-              <label class="choice"><input type="radio" id="wl-owner" name="role" value="owner" required> I run a business</label>
-              <label class="choice"><input type="radio" id="wl-firm" name="role" value="firm"> I work at a firm</label>
+              <label class="choice"><input type="radio" id="sg-owner" name="role" value="owner" required> I run a business</label>
+              <label class="choice"><input type="radio" id="sg-firm" name="role" value="firm"> I work at a firm</label>
             </div>
           </fieldset>
-          <p class="form-error" id="wl-error" role="alert" hidden>Please add your name, a valid email and which one describes you.</p>
+          <p class="form-error" data-error role="alert" hidden>Please add your name, a valid email and which one describes you.</p>
           <button class="btn btn-light" type="submit">Join the waitlist</button>
-          <p class="form-thanks" id="wl-thanks" role="status" hidden>Thanks, you&rsquo;re on the list. We&rsquo;ll be in touch.</p>
+          <p class="form-thanks" data-thanks tabindex="-1" role="status" hidden>Thanks, you&rsquo;re on the list. We&rsquo;ll be in touch.</p>
         </form>
       </div>
     </section>
@@ -366,23 +366,6 @@
   </main>
 
   <!-- site:footer -->
-  <section class="cta-band" aria-labelledby="cta-title">
-    <div class="wrap">
-      <div>
-        <h2 id="cta-title">Find out where your business stands.</h2>
-        <p>Vyta is opening to a small group of owners and firms first. Try the demo now, or join the waitlist and we&rsquo;ll be in touch.</p>
-      </div>
-      <div class="actions">
-        <a class="btn btn-light" href="index.html#waitlist">Join the waitlist</a>
-        <a class="btn btn-ghost-light" href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">
-          Try the demo
-          <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          <span class="visually-hidden">(opens in a new tab)</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
   <footer class="site-footer">
     <div class="wrap footer-top">
       <div class="footer-brand">
@@ -424,7 +407,7 @@
         <ul>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="index.html#waitlist">Join the waitlist</a></li>
+          <li><a href="waitlist.html">Join the waitlist</a></li>
         </ul>
       </nav>
       <nav class="footer-col" aria-label="Legal">

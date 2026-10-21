@@ -1,0 +1,34 @@
+<svg class="chart" viewBox="0 0 640 260" role="img" aria-label="Viability score each month for the made-up Stressed Co, falling from 53 to 21">
+<rect class="z-r" x="44" y="144.4" width="580" height="85.6"/>
+<rect class="z-a" x="44" y="90.9" width="580" height="53.5"/>
+<rect class="z-g" x="44" y="16.0" width="580" height="74.9"/>
+<line class="grid" x1="44" x2="624" y1="230.0" y2="230.0"/>
+<text class="tick" x="36" y="234.0" text-anchor="end">0</text>
+<line class="grid" x1="44" x2="624" y1="144.4" y2="144.4"/>
+<text class="tick" x="36" y="148.4" text-anchor="end">40</text>
+<line class="grid" x1="44" x2="624" y1="90.9" y2="90.9"/>
+<text class="tick" x="36" y="94.9" text-anchor="end">65</text>
+<line class="grid" x1="44" x2="624" y1="16.0" y2="16.0"/>
+<text class="tick" x="36" y="20.0" text-anchor="end">100</text>
+<text class="tick" x="44.0" y="252" text-anchor="middle">Oct 25</text>
+<text class="tick" x="149.5" y="252" text-anchor="middle">Dec</text>
+<text class="tick" x="254.9" y="252" text-anchor="middle">Feb</text>
+<text class="tick" x="360.4" y="252" text-anchor="middle">Apr</text>
+<text class="tick" x="465.8" y="252" text-anchor="middle">Jun</text>
+<text class="tick" x="571.3" y="252" text-anchor="middle">Aug</text>
+<text class="tick" x="624.0" y="252" text-anchor="middle">Sep 26</text>
+<polyline class="line" points="44.0,116.6 96.7,138.0 149.5,138.0 202.2,159.4 254.9,159.4 307.6,187.2 360.4,187.2 413.1,187.2 465.8,187.2 518.5,187.2 571.3,187.2 624.0,185.1"/>
+<circle class="dot" cx="44.0" cy="116.6" r="3"/>
+<circle class="dot" cx="96.7" cy="138.0" r="3"/>
+<circle class="dot" cx="149.5" cy="138.0" r="3"/>
+<circle class="dot" cx="202.2" cy="159.4" r="3"/>
+<circle class="dot" cx="254.9" cy="159.4" r="3"/>
+<circle class="dot" cx="307.6" cy="187.2" r="3"/>
+<circle class="dot" cx="360.4" cy="187.2" r="3"/>
+<circle class="dot" cx="413.1" cy="187.2" r="3"/>
+<circle class="dot" cx="465.8" cy="187.2" r="3"/>
+<circle class="dot" cx="518.5" cy="187.2" r="3"/>
+<circle class="dot" cx="571.3" cy="187.2" r="3"/>
+<circle class="dot end" cx="624.0" cy="185.1" r="5"/>
+<text class="endlab" x="614.0" y="173.1" text-anchor="end">21</text>
+</svg>

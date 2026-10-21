@@ -1,0 +1,32 @@
+<svg class="chart" viewBox="0 0 640 260" role="img" aria-label="Month-end cash falling from $5,940 to an overdraft of $30,000">
+<rect class="z-r" x="44" y="58.8" width="580" height="171.2"/>
+<line class="grid" x1="44" x2="624" y1="230.0" y2="230.0"/>
+<text class="tick" x="36" y="234.0" text-anchor="end">-$40k</text>
+<line class="grid" x1="44" x2="624" y1="144.4" y2="144.4"/>
+<text class="tick" x="36" y="148.4" text-anchor="end">-$20k</text>
+<line class="grid" x1="44" x2="624" y1="58.8" y2="58.8"/>
+<text class="tick" x="36" y="62.8" text-anchor="end">$0k</text>
+<line class="grid" x1="44" x2="624" y1="16.0" y2="16.0"/>
+<text class="tick" x="36" y="20.0" text-anchor="end">$10k</text>
+<text class="tick" x="44.0" y="252" text-anchor="middle">Oct 25</text>
+<text class="tick" x="149.5" y="252" text-anchor="middle">Dec</text>
+<text class="tick" x="254.9" y="252" text-anchor="middle">Feb</text>
+<text class="tick" x="360.4" y="252" text-anchor="middle">Apr</text>
+<text class="tick" x="465.8" y="252" text-anchor="middle">Jun</text>
+<text class="tick" x="571.3" y="252" text-anchor="middle">Aug</text>
+<text class="tick" x="624.0" y="252" text-anchor="middle">Sep 26</text>
+<polyline class="line" points="44.0,33.4 96.7,45.5 149.5,58.1 202.2,71.0 254.9,84.3 307.6,98.0 360.4,112.1 413.1,126.4 465.8,141.1 518.5,156.2 571.3,171.5 624.0,187.2"/>
+<circle class="dot" cx="44.0" cy="33.4" r="3"/>
+<circle class="dot" cx="96.7" cy="45.5" r="3"/>
+<circle class="dot" cx="149.5" cy="58.1" r="3"/>
+<circle class="dot" cx="202.2" cy="71.0" r="3"/>
+<circle class="dot" cx="254.9" cy="84.3" r="3"/>
+<circle class="dot" cx="307.6" cy="98.0" r="3"/>
+<circle class="dot" cx="360.4" cy="112.1" r="3"/>
+<circle class="dot" cx="413.1" cy="126.4" r="3"/>
+<circle class="dot" cx="465.8" cy="141.1" r="3"/>
+<circle class="dot" cx="518.5" cy="156.2" r="3"/>
+<circle class="dot" cx="571.3" cy="171.5" r="3"/>
+<circle class="dot end" cx="624.0" cy="187.2" r="5"/>
+<text class="endlab" x="614.0" y="175.2" text-anchor="end">-$30k</text>
+</svg>
