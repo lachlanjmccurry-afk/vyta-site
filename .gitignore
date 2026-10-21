@@ -2,3 +2,5 @@
 Thumbs.db
 .env
 *.log
+__pycache__/
+*.pyc
