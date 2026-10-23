@@ -1,530 +1,813 @@
 <!doctype html>
 <html lang="en-AU">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vyta | See where your business stands</title>
-  <meta name="description" content="Vyta reads your Xero file and shows the early warning signs of financial trouble, and whether the business can be turned around. Built for Australian small businesses and their advisers.">
-  <!-- site:head -->
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap">
-  <link rel="stylesheet" href="css/site.css">
-  <meta name="theme-color" content="#0F1A2A">
-  <!-- Review copy: keep search engines out until launch. Remove this line and the robots.txt block when going live. -->
-  <meta name="robots" content="noindex, nofollow">
-  <!-- /site:head -->
-  <style>
-    .home-hero { padding-block: var(--s8) var(--s9); background: linear-gradient(var(--white) 55%, var(--bg)); }
-    .home-hero .split { grid-template-columns: minmax(0, .85fr) minmax(0, 1.3fr); }
-    .home-hero h1 { margin-block: var(--s4) var(--s5); }
-    .home-hero .actions { margin-top: var(--s6); }
-    .readonly-line { margin-top: var(--s4); font-size: var(--t-sm); color: var(--muted); display: flex; align-items: center; gap: var(--s2); }
-    .readonly-line::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex: none; }
-    .facts-band { padding-block: var(--s7); border-bottom: 1px solid var(--line); }
-    .two-q { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
-    .two-q .panel { display: flex; flex-direction: column; gap: var(--s3); }
-    .two-q .q { font-size: var(--t-xl); font-weight: 800; color: var(--ink); letter-spacing: -.02em; line-height: 1.25; }
-    .two-q .band { margin-top: var(--s3); }
-    .two-q .scale { display: flex; justify-content: space-between; font-size: var(--t-xs); color: var(--muted); }
-    @media (max-width: 900px) { .two-q { grid-template-columns: 1fr; } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vyta | See where your business stands</title>
+<meta name="description" content="Vyta reads your Xero file every morning and tells you in plain English whether trouble is coming, while there's still time to act. Built for Australian small businesses and their advisers.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<meta name="theme-color" content="#0A0F2C">
+<!-- Review copy: keep search engines out until launch. Remove this line and the robots.txt block when going live. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a pinned 3D scroll story on deep navy (the books -> the data -> the checks -> the score),
+   then paper-coloured content bands in the logo's own navy-on-off-white. One committed brand world, not theme-switched. */
+:root {
+  color-scheme: dark;
+  --night: #0A0F2C;      /* hero ground, a shade deeper than the logo navy */
+  --navy: #151B3D;       /* logo navy */
+  --ink: #EDF0FA;        /* text on night */
+  --mist: #98A1C6;       /* muted text on night, navy-biased */
+  --paper: #F6F6F4;      /* logo background */
+  --paper-ink: #151B3D;
+  --paper-muted: #5B6185;
+  --paper-line: #E2E3E8;
+  --leaf: #4FDB8B;       /* the leaf on the logo: the only accent */
+  --amber: #F2B23E;      /* results only */
+  --red: #EE6152;        /* results only */
+
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --fs-hero: clamp(2.5rem, 5.2vw, 5rem);
+  --fs-h2: clamp(2rem, 3.8vw, 3.25rem);
+  --fs-h3: 1.25rem;
+  --fs-lead: clamp(1.05rem, 1.4vw, 1.25rem);
+  --fs-small: 0.875rem;
+  --fs-label: 0.75rem;
+
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--night);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; font-weight: 750; letter-spacing: -0.02em; line-height: 1.02; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--leaf); outline-offset: 3px; border-radius: 4px; }
+.label { font-family: var(--f-mono); font-size: var(--fs-label); letter-spacing: 0.12em; text-transform: uppercase; }
+
+/* ---------- header ---------- */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--night); }
+.site-head {
+  position: fixed; inset: 0 0 auto; z-index: 20;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: color-mix(in srgb, var(--night) 72%, transparent);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.site-head .inner {
+  max-width: 80rem; margin-inline: auto; height: 64px;
+  padding-left: var(--gutter-l); padding-right: var(--gutter-r);
+  display: flex; align-items: center; gap: 2rem;
+}
+.site-head .logo img { height: 30px; width: auto; display: block; }
+.site-head nav { display: flex; gap: 1.75rem; margin-left: auto; font-size: var(--fs-small); font-weight: 500; }
+.site-head nav a { text-decoration: none; color: var(--mist); transition: color .2s; }
+.site-head nav a:hover { color: var(--ink); }
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font: 600 var(--fs-small)/1 var(--f-body); text-decoration: none;
+  padding: .8rem 1.15rem; border-radius: 999px; border: 0; cursor: pointer;
+  background: var(--leaf); color: var(--night);
+  transition: transform .2s, box-shadow .2s;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px -8px color-mix(in srgb, var(--leaf) 70%, transparent); }
+.btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.22); }
+.btn.dark { background: var(--navy); color: var(--paper); }
+@media (max-width: 760px) { .site-head nav { display: none; } .site-head .btn { margin-left: auto; } }
+
+/* ---------- scroll story ---------- */
+.track { position: relative; height: 640vh; }
+.stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+#gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.stage::after { /* soft vignette so overlay type always reads */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(120% 90% at 70% 50%, transparent 40%, rgba(5,8,26,0.65) 100%);
+}
+.chapter {
+  position: absolute; z-index: 2;
+  left: max(var(--gutter-l), calc((100vw - 80rem) / 2 + 16px)); top: 50%;
+  transform: translateY(-50%);
+  width: min(36rem, 46vw);
+  display: grid; gap: 1.25rem;
+  transition: none;
+}
+.chapter h1 { font-size: var(--fs-hero); }
+.chapter h2 { font-size: var(--fs-h2); }
+.chapter .lead { font-size: var(--fs-lead); color: var(--mist); max-width: 32rem; }
+.chapter .label { color: var(--leaf); }
+.chapter[data-i="0"] .lead strong { color: var(--ink); font-weight: 600; }
+.chapter .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: .5rem; }
+.chapter:not([data-i="0"]) { opacity: 0; visibility: hidden; }
+.scroll-cue { display: inline-flex; align-items: center; gap: .6rem; color: var(--mist); font-size: var(--fs-small); margin-top: 1rem; }
+.scroll-cue i { width: 1px; height: 34px; background: linear-gradient(var(--leaf), transparent); animation: cue 2.2s ease-in-out infinite; transform-origin: top; }
+@keyframes cue { 0%,100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+
+.progress {
+  position: absolute; z-index: 2; right: var(--gutter-r); top: 50%; transform: translateY(-50%);
+  display: grid; gap: 1rem; list-style: none; margin: 0; padding: 0 8px 0 0;
+}
+.progress li { display: flex; align-items: center; justify-content: flex-end; gap: .7rem; color: var(--mist); opacity: .55; transition: opacity .3s, color .3s; }
+.progress li::after { content: ""; width: 18px; height: 2px; background: currentColor; border-radius: 2px; transition: width .3s; }
+.progress li.on { opacity: 1; color: var(--ink); }
+.progress li.on::after { width: 34px; background: var(--leaf); }
+
+.scorecard {
+  display: grid; gap: 1rem; margin-top: .5rem;
+  padding: 1.25rem; border-radius: 16px;
+  background: rgba(21,27,61,0.72); border: 1px solid rgba(255,255,255,0.09);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+.scorecard .tag { color: var(--mist); }
+.scores { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.score .name { font-size: var(--fs-small); color: var(--mist); }
+.score .num { font: 700 2.6rem/1 var(--f-display); font-variant-numeric: tabular-nums; margin-block: .25rem .5rem; display: flex; align-items: baseline; gap: .5rem; }
+.pill { font: 600 .72rem/1 var(--f-body); padding: .35rem .55rem; border-radius: 999px; letter-spacing: .02em; }
+.pill.g { background: color-mix(in srgb, var(--leaf) 18%, transparent); color: var(--leaf); }
+.bandbar { position: relative; display: flex; height: 6px; border-radius: 6px; overflow: visible; gap: 2px; }
+.bandbar span { height: 100%; border-radius: 3px; opacity: .85; }
+.bandbar b { position: absolute; top: -4px; width: 3px; height: 14px; border-radius: 2px; background: var(--ink); transform: translateX(-50%); }
+.bandlabels { display: flex; justify-content: space-between; font: 400 .68rem/1 var(--f-mono); color: var(--mist); margin-top: .45rem; }
+.pathway { border-top: 1px solid rgba(255,255,255,0.09); padding-top: .9rem; font-size: var(--fs-small); color: var(--mist); }
+.pathway strong { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 760px) {
+  .chapter { top: auto; bottom: max(24px, env(safe-area-inset-bottom, 0px)); transform: none; width: auto; right: var(--gutter-r); }
+  .stage::after { background: linear-gradient(to top, rgba(5,8,26,0.92) 0%, rgba(5,8,26,0.55) 45%, transparent 70%); }
+  .progress { display: none; }
+  .scorecard { padding: 1rem; }
+  .score .num { font-size: 2.1rem; }
+}
+
+/* ---------- paper content ---------- */
+.band { background: var(--paper); color: var(--paper-ink); position: relative; z-index: 3; }
+.band .wrap { max-width: 72rem; margin-inline: auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); padding-block: clamp(4.5rem, 9vw, 8rem); display: grid; gap: clamp(2rem, 4vw, 3.5rem); }
+.band + .band .wrap { padding-top: 0; }
+.sec-head { display: grid; gap: 1rem; max-width: 44rem; }
+.sec-head .label { color: var(--paper-muted); }
+.sec-head h2 { font-size: var(--fs-h2); }
+.sec-head p { font-size: var(--fs-lead); color: var(--paper-muted); max-width: 38rem; }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; list-style: none; margin: 0; padding: 0; counter-reset: s; }
+.steps li { display: grid; gap: .75rem; align-content: start; padding: 1.5rem; border-radius: 18px; background: #fff; border: 1px solid var(--paper-line); transition: transform .25s, box-shadow .25s; }
+.steps li:hover { transform: translateY(-4px) rotate(-.4deg); box-shadow: 0 18px 40px -22px rgba(21,27,61,.35); }
+.steps .n { font: 800 3.25rem/1 var(--f-display); color: var(--navy); display: flex; align-items: center; gap: .6rem; }
+.steps .n::after { content: ""; flex: 1; height: 2px; background: repeating-linear-gradient(90deg, var(--paper-line) 0 6px, transparent 6px 12px); }
+.steps li:last-child .n::after { background: none; }
+.steps h3 { font-size: var(--fs-h3); letter-spacing: -.01em; }
+.steps p { color: var(--paper-muted); font-size: .95rem; }
+.steps code { font-family: var(--f-mono); font-size: .8rem; background: var(--paper); padding: .1rem .35rem; border-radius: 4px; color: var(--navy); }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+
+.areas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 2px solid var(--navy); }
+.areas article { display: grid; grid-template-columns: 3rem 1fr; gap: .35rem 1rem; align-content: start; padding: 1.75rem 1.5rem 1.75rem 0; border-bottom: 1px solid var(--paper-line); }
+.areas .ico { grid-row: span 2; width: 3rem; height: 3rem; border-radius: 50%; display: grid; place-items: center; background: var(--navy); color: var(--leaf); font: 600 1.15rem/1 var(--f-mono); transition: transform .3s; }
+.areas article:hover .ico { transform: rotate(-12deg) scale(1.08); }
+.areas h3 { font-size: var(--fs-h3); letter-spacing: -.01em; padding-top: .2rem; }
+.areas p { color: var(--paper-muted); font-size: .95rem; }
+@media (max-width: 860px) { .areas { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .areas { grid-template-columns: 1fr; } }
+
+.tools { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+.tools li { display: grid; gap: .6rem; align-content: start; padding: 1.4rem; border-radius: 18px; background: var(--navy); color: var(--ink); transition: transform .25s; }
+.tools li:hover { transform: translateY(-4px); }
+.tools .label { color: var(--leaf); }
+.tools h3 { font-size: 1.15rem; letter-spacing: -.01em; }
+.tools p { color: var(--mist); font-size: .9rem; }
+@media (max-width: 1060px) { .tools { grid-template-columns: repeat(3, 1fr); } .tools li:nth-child(n+4) { grid-column: span 1; } }
+@media (max-width: 760px) { .tools { grid-template-columns: 1fr; } }
+
+.matrix-wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; }
+.matrix { display: grid; grid-template-columns: auto repeat(3, 1fr); gap: 6px; }
+.matrix .ax { font: 500 .72rem/1.2 var(--f-mono); color: var(--paper-muted); letter-spacing: .06em; text-transform: uppercase; display: flex; align-items: center; }
+.matrix .ax.col { justify-content: center; padding-top: .4rem; }
+.matrix .ax.row { padding-right: .6rem; justify-content: flex-end; }
+.cell {
+  --tone: var(--leaf);
+  appearance: none; border: 0; cursor: pointer; text-align: left;
+  font: 600 .88rem/1.25 var(--f-body); color: var(--paper-ink);
+  min-height: 5.5rem; padding: .8rem; border-radius: 12px;
+  background: color-mix(in srgb, var(--tone) 16%, #fff);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tone) 30%, transparent);
+  display: flex; flex-direction: column; justify-content: space-between; gap: .5rem;
+  transition: transform .2s, background .2s;
+}
+.cell small { font: 500 .68rem/1 var(--f-mono); color: var(--paper-muted); }
+.cell:hover { transform: scale(1.03); }
+.cell[aria-pressed="true"] { background: color-mix(in srgb, var(--tone) 42%, #fff); box-shadow: inset 0 0 0 2px var(--navy); }
+.matrix-axis-title { grid-column: 2 / -1; text-align: center; font: 600 .75rem/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--navy); }
+.verdict { display: grid; gap: 1rem; }
+.verdict .label { color: var(--paper-muted); }
+.verdict h3 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
+.verdict p { color: var(--paper-muted); font-size: 1.05rem; max-width: 30rem; }
+@media (max-width: 860px) { .matrix-wrap { grid-template-columns: 1fr; } .cell { min-height: 4.75rem; font-size: .8rem; } }
+
+.advisers { background: var(--navy); color: var(--ink); position: relative; z-index: 3; overflow: hidden; }
+.advisers .wrap { max-width: 72rem; margin-inline: auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); padding-block: clamp(4rem, 8vw, 7rem); display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: end; }
+.advisers h2 { font-size: var(--fs-h2); }
+.advisers h2 em { font-style: normal; color: var(--leaf); }
+.advisers p { color: var(--mist); font-size: var(--fs-lead); }
+.advisers .side { display: grid; gap: 1.5rem; }
+.advisers .binary { position: absolute; inset: 0; font: 400 13px/1.3 var(--f-mono); color: rgba(255,255,255,0.045); white-space: pre; overflow: hidden; pointer-events: none; user-select: none; }
+.advisers .wrap > * { position: relative; }
+@media (max-width: 860px) { .advisers .wrap { grid-template-columns: 1fr; } }
+
+.start .wrap { justify-items: start; }
+.start h2 { font-size: clamp(2.4rem, 6vw, 5rem); max-width: 16ch; }
+.start .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.start .btn.ghost { color: var(--navy); box-shadow: inset 0 0 0 1px var(--navy); }
+
+footer { background: var(--paper); color: var(--paper-muted); position: relative; z-index: 3; border-top: 1px solid var(--paper-line); }
+footer .wrap { max-width: 72rem; margin-inline: auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); padding-block: 2rem calc(2rem + env(safe-area-inset-bottom, 0px)); display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; font-size: var(--fs-small); }
+footer p { max-width: 40rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .scroll-cue i { animation: none; }
+  .steps li:hover, .cell:hover, .btn:hover { transform: none; }
+}
+</style>
 </head>
 <body>
-  <!-- site:header -->
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header" id="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="index.html" aria-current="page" aria-label="Vyta home">
-        <img src="assets/logo.png" alt="Vyta" width="78" height="34">
-      </a>
 
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        Menu
-      </button>
+<header class="site-head">
+  <div class="inner">
+    <a class="logo" href="#top" aria-label="Vyta home"><img src="data:image/png;base64,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" alt="Vyta" width="60" height="30"></a>
+    <nav aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#checks">What it watches</a>
+      <a href="#outcomes">Outcomes</a>
+      <a href="#advisers">For advisers</a>
+    </nav>
+    <a class="btn" href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">Try the demo</a>
+  </div>
+</header>
 
-      <nav class="nav" id="site-nav" aria-label="Main">
-        <ul class="nav-list">
-          <li class="nav-item">
-            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-product" data-section="product">Product</button>
-            <div class="menu menu-wide" id="menu-product">
-              <div class="menu-group">
-                <p class="menu-label">The health check</p>
-                <a href="product.html">
-                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
-                  <span class="t">Product overview</span><span class="d">Everything Vyta does, on one page</span>
-                </a>
-                <a href="health-check.html">
-                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 16a8.5 8.5 0 1 1 17 0"/><path d="M12 16l4.5-5"/></svg></span>
-                  <span class="t">Distress &amp; Viability scores</span><span class="d">Two scores, a verdict and what to do next</span>
-                </a>
-                <a href="indicators.html">
-                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="1.5"/><circle cx="5" cy="12" r="1.5"/><circle cx="5" cy="18" r="1.5"/><path d="M10 6h10M10 12h10M10 18h10"/></svg></span>
-                  <span class="t">21 warning signs</span><span class="d">Every indicator, explained in plain English</span>
-                </a>
-                <a href="reports.html">
-                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
-                  <span class="t">PDF report</span><span class="d">A clear report to take to your accountant</span>
-                </a>
-              </div>
-              <div class="menu-group">
-                <p class="menu-label">Tools</p>
-                <a href="cash.html">
-                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><rect x="4" y="5" width="3.5" height="11" rx=".8"/><rect x="10.25" y="9" width="3.5" height="4" rx=".8"/><rect x="16.5" y="12" width="3.5" height="5" rx=".8"/></svg></span>
-                  <span class="t">Where has the cash gone?</span><span class="d">The year&rsquo;s cash, step by step</span>
-                </a>
-                <a href="what-if.html">
-                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg></span>
-                  <span class="t">What if?</span><span class="d">Test price, cost and ATO plans before you commit</span>
-                </a>
-                <a href="history.html">
-                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg></span>
-                  <span class="t">History</span><span class="d">Daily updates and what changed since last time</span>
-                </a>
-                <a href="find-an-adviser.html">
-                  <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 20a6.5 6.5 0 0 0-3-5.5"/></svg></span>
-                  <span class="t">Find an adviser</span><span class="d">The right kind of help for your situation</span>
-                </a>
-              </div>
-              <div class="menu-feature">
-                <span class="eyebrow">Live demo</span>
-                <strong>Click through the real dashboard with two made-up businesses.</strong>
-                <span>No sign-up and no Xero needed.</span>
-                <a class="btn btn-light btn-sm" href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">Open the demo</a>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item">
-            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-who" data-section="who">Who it&rsquo;s for</button>
-            <div class="menu menu-narrow" id="menu-who">
-              <a href="for-owners.html">
-                <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v10h16V10"/><path d="M2.5 10 5 4h14l2.5 6z"/><path d="M10 20v-5h4v5"/></svg></span>
-                <span class="t">Business owners</span><span class="d">Know where you stand while there&rsquo;s time to act</span>
-              </a>
-              <a href="for-accountants.html">
-                <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8.5 6.5h7M8.5 11h1M12 11h1M15.5 11h0M8.5 14.5h1M12 14.5h1M8.5 18h1M12 18h1M15.5 14.5v3.5"/></svg></span>
-                <span class="t">Accountants &amp; bookkeepers</span><span class="d">Spot the clients who are slipping, early</span>
-              </a>
-              <a href="for-insolvency.html">
-                <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6"/></svg></span>
-                <span class="t">Insolvency &amp; restructuring</span><span class="d">Meet businesses while a turnaround is possible</span>
-              </a>
-            </div>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="security.html">Security</a></li>
-          <li class="nav-item"><a class="nav-link" href="resources.html">Guides</a></li>
-          <li class="nav-item">
-            <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-company" data-section="company">Company</button>
-            <div class="menu menu-narrow" id="menu-company">
-              <a href="about.html">
-                <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V12M10 20V8M15 20V10"/><path d="M15 10c0-3.5 2.5-6 6-6 0 3.5-2.5 6-6 6z"/></svg></span>
-                <span class="t">About Vyta</span><span class="d">Why we built it and who&rsquo;s behind it</span>
-              </a>
-              <a href="contact.html">
-                <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></svg></span>
-                <span class="t">Contact</span><span class="d">Questions, partnerships and press</span>
-              </a>
-            </div>
-          </li>
-        </ul>
+<main id="top">
+  <section class="track" id="story" aria-label="How Vyta reads your books">
+    <div class="stage">
+      <canvas id="gl" aria-hidden="true"></canvas>
 
-        <div class="header-actions">
-          <a class="btn btn-secondary btn-sm" href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">
-            Try the demo
-            <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-            <span class="visually-hidden">(opens in a new tab)</span>
-          </a>
-          <a class="btn btn-sm" href="waitlist.html">Join the waitlist</a>
+      <div class="chapter" data-i="0">
+        <span class="label">Business health, read from Xero</span>
+        <h1>Your balance sheet already knows how you're going.</h1>
+        <p class="lead">Vyta reads your books every morning and tells you <strong>in plain English</strong> whether trouble is coming, while there's still time to do something about it.</p>
+        <div class="actions">
+          <a class="btn" href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">Try the demo</a>
+          <a class="btn ghost" href="waitlist.html">Join the waitlist</a>
         </div>
-      </nav>
+        <span class="scroll-cue"><i></i>Scroll to go inside the books</span>
+      </div>
+
+      <div class="chapter" data-i="1">
+        <span class="label">01 · The data</span>
+        <h2>Every line. Every month.</h2>
+        <p class="lead">Each morning Vyta pulls twelve months of balances, invoices and bills from Xero. It only ever reads. Nothing in your books is changed.</p>
+      </div>
+
+      <div class="chapter" data-i="2">
+        <span class="label">02 · The checks</span>
+        <h2>23 checks, the way an insolvency expert would run them.</h2>
+        <p class="lead">Based on the ASIC v Plymin indicators and ATO rules: tax debt building up, bills going past 90 days, cash running short, margins slipping.</p>
+      </div>
+
+      <div class="chapter" data-i="3">
+        <span class="label">03 · The answer</span>
+        <h2>Two scores. One plain answer.</h2>
+        <div class="scorecard">
+          <span class="label tag">Example business · as at 30 Sep 2026</span>
+          <div class="scores">
+            <div class="score">
+              <div class="name">Distress</div>
+              <div class="num">18 <span class="pill g">Low</span></div>
+              <div class="bandbar" aria-label="Distress 18, Low band">
+                <span style="width:30%;background:var(--leaf)"></span><span style="width:30%;background:var(--amber)"></span><span style="width:40%;background:var(--red)"></span><b style="left:18%"></b>
+              </div>
+              <div class="bandlabels"><span>Low</span><span>Moderate</span><span>High</span></div>
+            </div>
+            <div class="score">
+              <div class="name">Viability</div>
+              <div class="num">74 <span class="pill g">Strong</span></div>
+              <div class="bandbar" aria-label="Viability 74, Strong band">
+                <span style="width:40%;background:var(--red)"></span><span style="width:25%;background:var(--amber)"></span><span style="width:35%;background:var(--leaf)"></span><b style="left:74%"></b>
+              </div>
+              <div class="bandlabels"><span>Weak</span><span>Uncertain</span><span>Strong</span></div>
+            </div>
+          </div>
+          <p class="pathway"><strong>Healthy.</strong> Monitor quarterly.</p>
+        </div>
+      </div>
+
+      <ol class="progress label" aria-hidden="true">
+        <li class="on">Books</li><li>Data</li><li>Checks</li><li>Answer</li>
+      </ol>
     </div>
-  </header>
-  <!-- /site:header -->
+  </section>
 
-  <main id="main">
-    <section class="home-hero">
-      <div class="wrap split">
-        <div>
-          <span class="eyebrow">Early warning for Australian small businesses</span>
-          <h1>See where your business stands, before it&rsquo;s too late.</h1>
-          <p class="lede">Vyta reads your Xero file and tells you, in plain English, whether money trouble is building and whether the business is worth fighting for. No jargon, no spreadsheets, no waiting for the year-end accounts.</p>
-          <div class="actions">
-            <a class="btn" href="waitlist.html">Join the waitlist</a>
-            <a class="btn btn-secondary" href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">
-              Try the live demo
-              <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-              <span class="visually-hidden">(opens in a new tab)</span>
-            </a>
-          </div>
-          <p class="readonly-line">Read-only. Vyta never changes anything in your Xero file.</p>
-        </div>
-        <!-- site:screen-overview -->
-        <figure class="shot">
-          <div class="screen" role="img" aria-label="The Vyta Overview page for a made-up business: Distress 89 out of 100 (High), Viability 21 out of 100 (Weak), recommended pathway Likely liquidation, with the top three issues listed.">
-            <!-- site:screen-side:Overview -->
-            <div class="screen-side" aria-hidden="true">
-              <img src="assets/logo-white.png" alt="">
-              <span data-p="Overview" class="on">Overview</span><span data-p="Details">Details</span><span data-p="Get help">Get help</span>
-              <small>More tools</small>
-              <span data-p="Cash">Cash</span><span data-p="What if?">What if?</span><span data-p="History">History</span>
-              <div class="conn"><b>Demo version</b>Two made-up businesses.</div>
-            </div>
-            <!-- /site:screen-side -->
-            <div class="screen-main" aria-hidden="true">
-              <div class="screen-top">
-                <span class="who">SC</span><span class="biz">TEST &ndash; Stressed Co</span><span class="per">12 months to Sep 2026</span><span class="sp"></span><span class="exp">Export PDF</span>
-              </div>
-              <div class="screen-body">
-                <div>
-                  <div class="eb">Overview</div>
-                  <h4>Stressed Co is in serious financial distress, and the business isn&rsquo;t making money.</h4>
-                </div>
-                <div class="screen-scores">
-                  <div class="screen-card">
-                    <div class="lab">Distress <span class="pill red">High</span></div>
-                    <div class="big">89<small> / 100</small></div>
-                    <div class="band" style="--at:89"><i class="green" style="flex:30"></i><i class="amber" style="flex:30"></i><i class="red" style="flex:40"></i><b class="red"></b></div>
-                  </div>
-                  <div class="screen-card">
-                    <div class="lab">Viability <span class="pill red">Weak</span></div>
-                    <div class="big">21<small> / 100</small></div>
-                    <div class="band" style="--at:21"><i class="red" style="flex:40"></i><i class="amber" style="flex:25"></i><i class="green" style="flex:35"></i><b class="red"></b></div>
-                  </div>
-                </div>
-                <div class="screen-path">
-                  <div>
-                    <div class="eb">Recommended pathway</div>
-                    <b>Likely liquidation</b>
-                    <p>A registered insolvency practitioner can advise on the safest way to close or sell.</p>
-                  </div>
-                  <span>See matched advisers</span>
-                </div>
-                <div class="screen-issues">
-                  <ol>
-                    <li><span class="code">V5</span><em>Not making money, even before one-off costs</em><span class="pill red">&minus;9.4%</span></li>
-                    <li><span class="code">V1</span><em>Owes more than it owns</em><span class="pill red">&minus;1.16</span></li>
-                    <li><span class="code">V4</span><em>Overheads use 137% of gross profit</em><span class="pill red">136.9%</span></li>
-                  </ol>
-                </div>
-              </div>
-            </div>
-          </div>
-          <figcaption class="screen-caption">Example only: a made-up test business, scored by Vyta&rsquo;s real engine.</figcaption>
-        </figure>
-        <!-- /site:screen-overview -->
-      </div>
-    </section>
-
-    <section class="facts-band">
-      <div class="wrap facts">
-        <div><b>21</b><span>warning signs checked, from cash runway to ATO debt</span></div>
-        <div><b>12 months</b><span>of your Xero figures read in one go</span></div>
-        <div><b>2 scores</b><span>how much trouble, and whether it can recover</span></div>
-        <div><b>0</b><span>changes made to your books. Vyta can only read.</span></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap story">
-        <div class="stack">
-          <span class="eyebrow">Why it matters</span>
-          <h2>The warning signs show up months before the crisis.</h2>
-          <p>Most businesses that fail send signals long before the end: tax debts creeping up, suppliers waiting longer, cash slipping month after month. They&rsquo;re all in the Xero file. They just don&rsquo;t add up to an answer on their own.</p>
-          <p>Here&rsquo;s a made-up business, scored by Vyta at the end of each month:</p>
-          <ol class="story-steps">
-            <li><b>Oct 2025</b><span>Distress 33. Already a &ldquo;Turnaround review&rdquo;, with 4 red warning signs. Plenty of options.</span></li>
-            <li><b>Jan 2026</b><span>Distress 63 and High. The bank account is overdrawn and the ATO balance has risen three months running.</span></li>
-            <li><b>Sep 2026</b><span>Distress 89. $30,000 overdrawn, $68,455 owed to the ATO, suppliers waiting 99 days.</span></li>
-          </ol>
-          <p class="small muted">Seeing it in October rather than September is the difference between a turnaround and a liquidation.</p>
-        </div>
-        <div class="chart-panel">
-          <h3>Distress score, month by month</h3>
-          <p class="sub">TEST &ndash; Stressed Co (made-up). Higher is worse.</p>
-          <!-- chart:distress_history -->
-          <svg class="chart" viewBox="0 0 640 260" role="img" aria-label="Distress score each month for the made-up Stressed Co, rising from 33 in October 2025 to 89 in September 2026">
-          <rect class="z-g" x="44" y="165.8" width="580" height="64.2"/>
-          <rect class="z-a" x="44" y="101.6" width="580" height="64.2"/>
-          <rect class="z-r" x="44" y="16.0" width="580" height="85.6"/>
-          <line class="grid" x1="44" x2="624" y1="230.0" y2="230.0"/>
-          <text class="tick" x="36" y="234.0" text-anchor="end">0</text>
-          <line class="grid" x1="44" x2="624" y1="165.8" y2="165.8"/>
-          <text class="tick" x="36" y="169.8" text-anchor="end">30</text>
-          <line class="grid" x1="44" x2="624" y1="101.6" y2="101.6"/>
-          <text class="tick" x="36" y="105.6" text-anchor="end">60</text>
-          <line class="grid" x1="44" x2="624" y1="16.0" y2="16.0"/>
-          <text class="tick" x="36" y="20.0" text-anchor="end">100</text>
-          <text class="tick" x="44.0" y="252" text-anchor="middle">Oct 25</text>
-          <text class="tick" x="149.5" y="252" text-anchor="middle">Dec</text>
-          <text class="tick" x="254.9" y="252" text-anchor="middle">Feb</text>
-          <text class="tick" x="360.4" y="252" text-anchor="middle">Apr</text>
-          <text class="tick" x="465.8" y="252" text-anchor="middle">Jun</text>
-          <text class="tick" x="571.3" y="252" text-anchor="middle">Aug</text>
-          <text class="tick" x="624.0" y="252" text-anchor="middle">Sep 26</text>
-          <polyline class="line" points="44.0,159.4 96.7,148.7 149.5,116.6 202.2,95.2 254.9,78.1 307.6,60.9 360.4,56.7 413.1,56.7 465.8,56.7 518.5,56.7 571.3,39.5 624.0,39.5"/>
-          <circle class="dot" cx="44.0" cy="159.4" r="3"/>
-          <circle class="dot" cx="96.7" cy="148.7" r="3"/>
-          <circle class="dot" cx="149.5" cy="116.6" r="3"/>
-          <circle class="dot" cx="202.2" cy="95.2" r="3"/>
-          <circle class="dot" cx="254.9" cy="78.1" r="3"/>
-          <circle class="dot" cx="307.6" cy="60.9" r="3"/>
-          <circle class="dot" cx="360.4" cy="56.7" r="3"/>
-          <circle class="dot" cx="413.1" cy="56.7" r="3"/>
-          <circle class="dot" cx="465.8" cy="56.7" r="3"/>
-          <circle class="dot" cx="518.5" cy="56.7" r="3"/>
-          <circle class="dot" cx="571.3" cy="39.5" r="3"/>
-          <circle class="dot end" cx="624.0" cy="39.5" r="5"/>
-          <line class="mark" x1="202.2" x2="202.2" y1="16" y2="230"/>
-          <text class="note" x="210.2" y="30">High from Jan 26</text>
-          <text class="endlab" x="614.0" y="27.5" text-anchor="end">89</text>
-          </svg>
-          <!-- /chart:distress_history -->
-          <div class="legend">
-            <span><i style="background:var(--green-soft);border:1px solid var(--green-bar)"></i>Low, under 30</span>
-            <span><i style="background:var(--amber-soft);border:1px solid var(--amber-bar)"></i>Moderate, 30 to 59</span>
-            <span><i style="background:var(--red-soft);border:1px solid var(--red-bar)"></i>High, 60 and over</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-wash">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow">Two honest answers</span>
-          <h2>Every business owner is really asking two questions.</h2>
-          <p class="lede">Vyta answers them separately, because a business can be in deep trouble and still be worth saving, or look calm while the model underneath is broken.</p>
-        </div>
-        <div class="two-q">
-          <div class="panel">
-            <span class="eyebrow">Distress score &middot; higher is worse</span>
-            <p class="q">How serious is it?</p>
-            <p class="muted">13 signs of financial stress: cash runway, ATO debt, unpaid suppliers, late-paying customers, rising bank debt and more.</p>
-            <div class="band" style="--at:89" aria-hidden="true"><i class="green" style="flex:30"></i><i class="amber" style="flex:30"></i><i class="red" style="flex:40"></i><b class="red"></b></div>
-            <div class="scale" aria-hidden="true"><span>Low</span><span>Moderate</span><span>High</span></div>
-          </div>
-          <div class="panel">
-            <span class="eyebrow">Viability score &middot; higher is better</span>
-            <p class="q">Is there a business worth saving?</p>
-            <p class="muted">8 tests of the business underneath: margins, overheads, underlying profit, revenue trend and what it owns against what it owes.</p>
-            <div class="band" style="--at:72" aria-hidden="true"><i class="red" style="flex:40"></i><i class="amber" style="flex:25"></i><i class="green" style="flex:35"></i><b class="green"></b></div>
-            <div class="scale" aria-hidden="true"><span>Weak</span><span>Uncertain</span><span>Strong</span></div>
-          </div>
-        </div>
-        <p style="margin-top: var(--s6)">Together they point to one of nine pathways, from &ldquo;Healthy, monitor quarterly&rdquo; to &ldquo;Restructure candidate&rdquo;, with the kind of help that fits. <a class="link-arrow" href="health-check.html">How the scores work</a></p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow">What&rsquo;s inside</span>
-          <h2>A full health check, not just a number.</h2>
-        </div>
-        <div class="cards">
-          <a class="card-link" href="indicators.html">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="1.5"/><circle cx="5" cy="12" r="1.5"/><circle cx="5" cy="18" r="1.5"/><path d="M10 6h10M10 12h10M10 18h10"/></svg></span>
-            <h3>21 warning signs, explained</h3>
-            <p>Every indicator shows its figure, its warning levels, a 12-month trend and a sentence on what it means for you.</p>
-            <span class="more">See the indicators</span>
-          </a>
-          <a class="card-link" href="cash.html">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18"/><rect x="4" y="5" width="3.5" height="11" rx=".8"/><rect x="10.25" y="9" width="3.5" height="4" rx=".8"/><rect x="16.5" y="12" width="3.5" height="5" rx=".8"/></svg></span>
-            <h3>Where has the cash gone?</h3>
-            <p>One chart that walks from last year&rsquo;s bank balance to today&rsquo;s: profit, tax, debt, customers and suppliers.</p>
-            <span class="more">See the cash view</span>
-          </a>
-          <a class="card-link" href="what-if.html">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg></span>
-            <h3>What if?</h3>
-            <p>Raise prices, trim overhead, chase debtors or set up an ATO payment plan, and watch both scores move before you commit.</p>
-            <span class="more">Try the levers</span>
-          </a>
-          <a class="card-link" href="history.html">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg></span>
-            <h3>History</h3>
-            <p>Vyta refreshes from Xero every day and keeps each result, so you can see the trend and what changed since last time.</p>
-            <span class="more">See how it tracks</span>
-          </a>
-          <a class="card-link" href="find-an-adviser.html">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18.5 20a6.5 6.5 0 0 0-3-5.5"/></svg></span>
-            <h3>Find an adviser</h3>
-            <p>Advisers matched to your pathway and your results: accountants, turnaround advisers, brokers or registered liquidators.</p>
-            <span class="more">How matching works</span>
-          </a>
-          <a class="card-link" href="reports.html">
-            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
-            <h3>PDF report</h3>
-            <p>Export the whole picture in one click and walk into your accountant&rsquo;s office with the facts already laid out.</p>
-            <span class="more">See the report</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-navy">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow">Who it&rsquo;s for</span>
-          <h2>Built for the owner, and for the people they turn to.</h2>
-        </div>
-        <div class="doors">
-          <a class="door" href="for-owners.html">
-            <span class="who">Business owners</span>
-            <h3>Know where you stand while there&rsquo;s still time to act.</h3>
-            <p>A straight answer, the three things to fix first, and room to test your options.</p>
-            <span class="more">For owners</span>
-          </a>
-          <a class="door" href="for-accountants.html">
-            <span class="who">Accountants &amp; bookkeepers</span>
-            <h3>Spot the clients who are slipping, months earlier.</h3>
-            <p>Start the hard conversation with the evidence already on the table.</p>
-            <span class="more">For accountants</span>
-          </a>
-          <a class="door" href="for-insolvency.html">
-            <span class="who">Insolvency &amp; restructuring</span>
-            <h3>Meet businesses while a turnaround is still possible.</h3>
-            <p>Separate distress from viability and walk into the first meeting prepared.</p>
-            <span class="more">For practitioners</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap split" style="align-items:start">
-        <div class="stack">
-          <span class="eyebrow">Built to be trusted</span>
-          <h2>Grounded in the tests the courts and the ATO use.</h2>
-          <p>Vyta isn&rsquo;t a black box. Its indicators come from the checklist Australian courts use to judge insolvency, ASIC v Plymin, plus the ATO debts that matter most to directors. Every result shows the figures behind it.</p>
-          <p><a class="link-arrow" href="security.html">Security and your data</a></p>
-        </div>
-        <ul class="ticks">
-          <li><span><strong>Read-only access.</strong> Vyta asks Xero for read permissions only. It can&rsquo;t create, change or delete anything, and you can disconnect it from Xero at any time.</span></li>
-          <li><span><strong>Every number explained.</strong> Each result shows the calculation, the figures it used and where the warning levels sit.</span></li>
-          <li><span><strong>Honest about gaps.</strong> If Vyta doesn&rsquo;t have enough data for a check, it says &ldquo;Not assessed&rdquo; and leaves it out, rather than guessing. Every result carries a data confidence rating.</span></li>
-          <li><span><strong>Your results stay yours.</strong> Vyta never sends your data or scores to an adviser. You decide who to contact and what to share.</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section section-wash">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow">Questions</span>
-          <h2>Common questions</h2>
-        </div>
-        <div class="faq">
-          <details>
-            <summary>What do I need to use Vyta?</summary>
-            <div><p>A Xero subscription with your business&rsquo;s books in it, ideally with at least 12 months of trading. Vyta works with fewer months too, but tells you its confidence is lower.</p></div>
-          </details>
-          <details>
-            <summary>Will Vyta change anything in my Xero file?</summary>
-            <div><p>No. Vyta only asks Xero for read permissions, so it can&rsquo;t create invoices, post journals or change settings. You can remove its access at any time from Xero&rsquo;s connected apps settings.</p></div>
-          </details>
-          <details>
-            <summary>Is this financial or legal advice?</summary>
-            <div><p>No. Vyta gives indicative early-warning signals based on your Xero data. It isn&rsquo;t an insolvency determination or professional advice. If the results worry you, speak to a qualified accountant, adviser or registered liquidator. Vyta can help you find one.</p></div>
-          </details>
-          <details>
-            <summary>How often does it update?</summary>
-            <div><p>Vyta refreshes from Xero every day and saves each result, so you can see how the scores move over time and which indicators have changed colour.</p></div>
-          </details>
-          <details>
-            <summary>How much does it cost?</summary>
-            <div><p>Pricing will be announced when Vyta opens more widely. Join the waitlist and we&rsquo;ll let you know first.</p></div>
-          </details>
-          <details>
-            <summary>Can I try it first?</summary>
-            <div><p>Yes. The <a href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">live demo<span class="visually-hidden"> (opens in a new tab)</span></a> is the real dashboard running on two made-up businesses: one healthy, one in serious trouble. No sign-up or Xero needed.</p></div>
-          </details>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- site:cta -->
-  <section class="cta-band" aria-labelledby="cta-title">
+  <section class="band" id="how">
     <div class="wrap">
-      <div>
-        <h2 id="cta-title">Find out where your business stands.</h2>
-        <p>Vyta is opening to a small group of owners and firms first. Try the demo now, or join the waitlist and we&rsquo;ll be in touch.</p>
+      <div class="sec-head">
+        <span class="label">How it works</span>
+        <h2>Set up once. Then it keeps watch.</h2>
+        <p>No spreadsheets to fill in and no reports to request. Vyta works from what's already in Xero.</p>
       </div>
-      <div class="actions">
-        <a class="btn btn-light" href="waitlist.html">Join the waitlist</a>
-        <a class="btn btn-ghost-light" href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">
-          Try the demo
-          <svg class="ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          <span class="visually-hidden">(opens in a new tab)</span>
-        </a>
+      <ol class="steps">
+        <li>
+          <span class="n">1</span>
+          <h3>Connect Xero</h3>
+          <p>Sign in with Xero and pick your business. Vyta asks for read-only access, so it can look but never touch.</p>
+        </li>
+        <li>
+          <span class="n">2</span>
+          <h3>Vyta runs the checks</h3>
+          <p>Every morning at 7am it pulls the latest figures and re-scores the business against all 23 checks.</p>
+        </li>
+        <li>
+          <span class="n">3</span>
+          <h3>You know where you stand</h3>
+          <p>Two scores, your top three issues, what's working, and advisers who can help with your situation. Export it as a PDF for your accountant.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" id="checks">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">What it watches</span>
+        <h2>The warning signs people miss until it's late.</h2>
+        <p>Vyta keeps an eye on 23 warning signs across six areas of the business, and tells you in plain English which ones need attention.</p>
+      </div>
+      <div class="areas">
+        <article><span class="ico" aria-hidden="true">$</span><h3>Cash</h3><p>How much is in the bank, and how long it will last at the current pace.</p></article>
+        <article><span class="ico" aria-hidden="true">%</span><h3>Tax and super</h3><p>ATO balances, GST, PAYG and super that are quietly building up.</p></article>
+        <article><span class="ico" aria-hidden="true">⇄</span><h3>Suppliers and customers</h3><p>Bills being paid later and later, and invoices customers aren't paying.</p></article>
+        <article><span class="ico" aria-hidden="true">↗</span><h3>Debt</h3><p>Loans and the overdraft creeping up month after month.</p></article>
+        <article><span class="ico" aria-hidden="true">±</span><h3>Profit and margins</h3><p>Whether each sale still makes money once the overheads are paid.</p></article>
+        <article><span class="ico" aria-hidden="true">◷</span><h3>Sales and the books</h3><p>Sales dropping away from a normal month, and books falling behind.</p></article>
       </div>
     </div>
   </section>
-  <!-- /site:cta -->
-  <!-- site:footer -->
-  <footer class="site-footer">
-    <div class="wrap footer-top">
-      <div class="footer-brand">
-        <img src="assets/logo-white.png" alt="Vyta" width="78" height="34" loading="lazy">
-        <p>Early warning for Australian small businesses. Vyta reads your Xero file and shows whether money trouble is building, and whether the business can recover.</p>
-        <span class="readonly">Read-only connection to Xero</span>
+
+  <section class="band" id="tools">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">Inside Vyta</span>
+        <h2>More than a score.</h2>
+        <p>Once you know where you stand, these tools help you work out what to do next.</p>
       </div>
-      <nav class="footer-col" aria-label="Product">
-        <h3>Product</h3>
-        <ul>
-          <li><a href="product.html">Overview</a></li>
-          <li><a href="health-check.html">Distress &amp; Viability</a></li>
-          <li><a href="indicators.html">21 warning signs</a></li>
-          <li><a href="cash.html">Where has the cash gone?</a></li>
-          <li><a href="what-if.html">What if?</a></li>
-          <li><a href="history.html">History</a></li>
-          <li><a href="find-an-adviser.html">Find an adviser</a></li>
-          <li><a href="reports.html">PDF report</a></li>
-        </ul>
-      </nav>
-      <nav class="footer-col" aria-label="Who it's for">
-        <h3>Who it&rsquo;s for</h3>
-        <ul>
-          <li><a href="for-owners.html">Business owners</a></li>
-          <li><a href="for-accountants.html">Accountants &amp; bookkeepers</a></li>
-          <li><a href="for-insolvency.html">Insolvency &amp; restructuring</a></li>
-        </ul>
-      </nav>
-      <nav class="footer-col" aria-label="Guides">
-        <h3>Guides</h3>
-        <ul>
-          <li><a href="resources.html">All guides</a></li>
-          <li><a href="security.html">Security &amp; your data</a></li>
-          <li><a href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">Live demo<span class="visually-hidden"> (opens in a new tab)</span></a></li>
-        </ul>
-      </nav>
-      <nav class="footer-col" aria-label="Company">
-        <h3>Company</h3>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="waitlist.html">Join the waitlist</a></li>
-        </ul>
-      </nav>
-      <nav class="footer-col" aria-label="Legal">
-        <h3>Legal</h3>
-        <ul>
-          <li><a href="privacy.html">Privacy policy</a></li>
-          <li><a href="terms.html">Terms of use</a></li>
-          <li><a href="disclaimer.html">Disclaimer</a></li>
-        </ul>
-      </nav>
+      <ul class="tools">
+        <li><span class="label">Cash</span><h3>Where has the cash gone?</h3><p>Follow the money from last year's bank balance to today's, step by step.</p></li>
+        <li><span class="label">What if?</span><h3>Try a change first</h3><p>Raise prices, cut costs or chase debtors faster, and see your scores move before you commit.</p></li>
+        <li><span class="label">History</span><h3>See the trend</h3><p>Watch both scores month by month, and see what changed since last time.</p></li>
+        <li><span class="label">Get help</span><h3>Find the right adviser</h3><p>Accountants and advisers who fit your situation and your state.</p></li>
+        <li><span class="label">Report</span><h3>Take it to your accountant</h3><p>Export a clear PDF of your scores and the issues behind them.</p></li>
+      </ul>
     </div>
-    <div class="wrap footer-bottom">
-      <p>&copy; 2026 Vyta</p>
-      <p>Vyta gives general information, not financial, legal or insolvency advice. Speak to a qualified adviser before acting on it.</p>
-      <p>Made in Australia</p>
+  </section>
+
+  <section class="band" id="outcomes">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">Outcomes</span>
+        <h2>Nine places a business can land.</h2>
+        <p>Put the two scores together and you get a pathway: what the numbers mean and the sensible next step. Tap a square.</p>
+      </div>
+      <div class="matrix-wrap">
+        <div class="matrix" id="matrix" role="group" aria-label="Distress by viability outcomes"></div>
+        <div class="verdict" aria-live="polite">
+          <span class="label" id="v-coords">Low distress · Strong viability</span>
+          <h3 id="v-title">Healthy</h3>
+          <p id="v-text">Monitor quarterly.</p>
+        </div>
+      </div>
     </div>
-  </footer>
-  <script src="js/site.js" defer></script>
-  <!-- /site:footer -->
+  </section>
+
+  <section class="advisers" id="advisers">
+    <div class="binary" id="binary" aria-hidden="true"></div>
+    <div class="wrap">
+      <div>
+        <span class="label" style="color:var(--leaf)">For advisers</span>
+        <h2 style="margin-top:1rem">Meet businesses <em>before</em> it's too late to help.</h2>
+      </div>
+      <div class="side">
+        <p>Accountants, turnaround advisers and insolvency practitioners can be listed on Vyta's Get help page. Owners see the advisers who match their situation and their state.</p>
+        <div><a class="btn" href="#start">Get listed</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band start" id="start">
+    <div class="wrap">
+      <span class="label" style="color:var(--paper-muted)">See it for yourself</span>
+      <h2>Find out how your business is really going.</h2>
+      <div class="actions">
+        <a class="btn dark" href="waitlist.html">Join the waitlist</a>
+        <a class="btn ghost" href="https://demoapppy-djuv3vyyz3ynzokj86m8ix.streamlit.app/" target="_blank" rel="noopener">Try the demo</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Vyta</span>
+    <p>Vyta gives early-warning signals only. It isn't an insolvency determination or professional advice. Its thresholds are working assumptions, not industry benchmarks.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(() => {
+  /* ---------- content: outcome matrix ---------- */
+  const D = ["High", "Moderate", "Low"], V = ["Weak", "Uncertain", "Strong"];
+  const OUT = {
+    Low:      { Strong: ["Healthy", "Monitor quarterly."],
+                Uncertain: ["Performance review", "Look at margin, pricing and overheads."],
+                Weak: ["Structural concern", "Fix the business model before cash runs out."] },
+    Moderate: { Strong: ["Early intervention", "Fix working capital, refinance, or set up an ATO payment plan."],
+                Uncertain: ["Turnaround review", "Find out where the cash has been going."],
+                Weak: ["Serious", "Restructure, or plan an orderly exit."] },
+    High:     { Strong: ["Restructure candidate", "A profitable business weighed down by old debts. Small business restructuring, a voluntary administration or safe harbour may save it."],
+                Uncertain: ["Urgent advice", "Get advice now on restructuring versus liquidation."],
+                Weak: ["Likely exit", "Liquidation or sale of the business is the likely pathway."] }
+  };
+  const TONES = ["#4FDB8B", "#A8D96A", "#F2B23E", "#F28A45", "#EE6152"];
+  const m = document.getElementById("matrix");
+  let html = "";
+  D.forEach((d, r) => {
+    html += `<span class="ax row">${d}</span>`;
+    V.forEach((v, c) => {
+      const tone = TONES[(2 - r) + (2 - c)];
+      const sel = d === "Low" && v === "Strong";
+      html += `<button class="cell" id="cell-${d}-${v}" style="--tone:${tone}" data-d="${d}" data-v="${v}" aria-pressed="${sel}">${OUT[d][v][0]}<small>${d[0]} · ${v[0]}</small></button>`;
+    });
+  });
+  html += `<span></span>` + V.map(v => `<span class="ax col">${v}</span>`).join("");
+  html += `<span></span><span class="matrix-axis-title">Viability →</span>`;
+  m.innerHTML = `<span class="ax row" style="grid-column:1/-1;justify-content:flex-start;color:var(--navy);font-weight:600;letter-spacing:.1em">↓ Distress</span>` + html;
+  m.addEventListener("click", e => {
+    const b = e.target.closest(".cell"); if (!b) return;
+    m.querySelectorAll(".cell").forEach(x => x.setAttribute("aria-pressed", x === b));
+    const [t, s] = OUT[b.dataset.d][b.dataset.v];
+    document.getElementById("v-coords").textContent = `${b.dataset.d} distress · ${b.dataset.v} viability`;
+    document.getElementById("v-title").textContent = t;
+    document.getElementById("v-text").textContent = s;
+  });
+
+  let bin = "";
+  for (let i = 0; i < 60; i++) { let l = ""; for (let j = 0; j < 220; j++) l += Math.random() < .5 ? "0" : "1"; bin += l + "\n"; }
+  document.getElementById("binary").textContent = bin;
+
+  /* ---------- scroll story ---------- */
+  const track = document.getElementById("story");
+  const chapters = [...document.querySelectorAll(".chapter")];
+  const ticks = [...document.querySelectorAll(".progress li")];
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const WINDOWS = [[-1, 0, 0.1, 0.15], [0.19, 0.24, 0.38, 0.43], [0.47, 0.52, 0.66, 0.71], [0.8, 0.86, 2, 2]];
+  const ss = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const progress = () => {
+    const r = track.getBoundingClientRect();
+    return Math.min(1, Math.max(0, -r.top / (track.offsetHeight - innerHeight)));
+  };
+  let target = progress(), p = target;
+  addEventListener("scroll", () => { target = progress(); }, { passive: true });
+
+  const updateOverlay = () => {
+    let active = 0;
+    chapters.forEach((c, i) => {
+      const [a, b, e, f] = WINDOWS[i];
+      const o = ss(a, b, p) * (1 - ss(e, f, p));
+      c.style.opacity = o.toFixed(3);
+      c.style.visibility = o < 0.01 ? "hidden" : "visible";
+      c.style.transform = (innerWidth > 760 ? "translateY(-50%) " : "") + `translateY(${((1 - o) * (p < b ? 24 : -24)).toFixed(1)}px)`;
+      if (p >= a) active = i;
+    });
+    ticks.forEach((t, i) => t.classList.toggle("on", i === active));
+  };
+
+  const canvas = document.getElementById("gl");
+  if (!window.THREE) { const loop = () => { p = target; updateOverlay(); requestAnimationFrame(loop); }; loop(); return; }
+
+  /* ---------- 3D ---------- */
+  const W = innerWidth < 760;
+  const N = W ? 9000 : 16000;
+  const MONO = '"JetBrains Mono", Consolas, monospace';
+  const BODY = '"Plus Jakarta Sans", "Segoe UI", sans-serif';
+
+  // The balance sheet, drawn twice: a styled panel for the plane, and text-only for sampling particles.
+  const SHEET_W = 1024, SHEET_H = 1280;
+  const ROWS = [
+    ["h", "Assets"],
+    ["s", "Bank"],
+    ["r", "Business Cheque Account", "42,318.07"],
+    ["s", "Current Assets"],
+    ["r", "Trade Debtors", "61,904.50"],
+    ["r", "Inventory", "18,220.00"],
+    ["t", "Total Current Assets", "122,442.57"],
+    ["s", "Fixed Assets"],
+    ["r", "Office Equipment", "14,800.00"],
+    ["r", "Motor Vehicles", "31,500.00"],
+    ["t", "Total Assets", "168,742.57"],
+    ["h", "Liabilities"],
+    ["s", "Current Liabilities"],
+    ["r", "Trade Creditors", "48,117.92"],
+    ["r", "GST", "9,412.30"],
+    ["r", "PAYG Withholdings Payable", "6,880.00"],
+    ["r", "Superannuation Payable", "7,214.66"],
+    ["a", "ATO Integrated Client Account", "18,212.00"],
+    ["s", "Non-current Liabilities"],
+    ["r", "Business Loan", "55,000.00"],
+    ["t", "Total Liabilities", "144,836.88"],
+    ["n", "Net Assets", "23,905.69"]
+  ];
+  function drawSheet(ctx, textOnly) {
+    ctx.clearRect(0, 0, SHEET_W, SHEET_H);
+    if (!textOnly) {
+      ctx.fillStyle = "rgba(21,27,61,0.9)";
+      ctx.beginPath(); ctx.roundRect ? ctx.roundRect(0, 0, SHEET_W, SHEET_H, 36) : ctx.rect(0, 0, SHEET_W, SHEET_H); ctx.fill();
+      ctx.strokeStyle = "rgba(255,255,255,0.12)"; ctx.lineWidth = 3; ctx.stroke();
+    }
+    const ink = "#E8EBF6", mist = "#98A1C6", amber = "#F2B23E";
+    ctx.textBaseline = "alphabetic";
+    ctx.fillStyle = ink; ctx.font = `700 64px ${BODY}`; ctx.fillText("Balance Sheet", 72, 130);
+    ctx.fillStyle = mist; ctx.font = `500 30px ${BODY}`; ctx.fillText("Example Pty Ltd  ·  As at 30 September 2026", 72, 182);
+    let y = 262;
+    for (const [k, label, val] of ROWS) {
+      if (k === "h") { y += 14; ctx.fillStyle = ink; ctx.font = `700 36px ${BODY}`; ctx.fillText(label, 72, y); y += 52; continue; }
+      if (k === "s") { ctx.fillStyle = mist; ctx.font = `600 24px ${BODY}`; ctx.fillText(label.toUpperCase(), 72, y); y += 42; continue; }
+      if (k === "a" && !textOnly) { ctx.fillStyle = "rgba(242,178,62,0.14)"; ctx.fillRect(56, y - 34, SHEET_W - 112, 46); }
+      if ((k === "t" || k === "n") && !textOnly) { ctx.fillStyle = "rgba(255,255,255,0.18)"; ctx.fillRect(72, y - 40, SHEET_W - 144, 2); }
+      ctx.fillStyle = k === "a" ? amber : ink;
+      ctx.font = `${k === "t" || k === "n" ? 700 : 500} 30px ${BODY}`;
+      ctx.textAlign = "left"; ctx.fillText(label, 88, y);
+      ctx.font = `${k === "t" || k === "n" ? 600 : 400} 30px ${MONO}`;
+      ctx.textAlign = "right"; ctx.fillText(val, SHEET_W - 80, y);
+      ctx.textAlign = "left";
+      y += k === "t" ? 66 : 46;
+    }
+  }
+
+  function sample(cnv, count, step, map) {
+    const ctx = cnv.getContext("2d");
+    const { data, width, height } = ctx.getImageData(0, 0, cnv.width, cnv.height);
+    const hits = [];
+    for (let y = 0; y < height; y += step) for (let x = 0; x < width; x += step) {
+      const i = (y * width + x) * 4;
+      if (data[i + 3] > 110) hits.push([x, y, data[i] / 255, data[i + 1] / 255, data[i + 2] / 255]);
+    }
+    const out = [];
+    for (let k = 0; k < count; k++) out.push(map(hits[(Math.random() * hits.length) | 0]));
+    return out;
+  }
+
+  function markCanvas() {
+    const c = document.createElement("canvas"); c.width = c.height = 512;
+    const x = c.getContext("2d");
+    x.strokeStyle = "#fff"; x.lineWidth = 22; x.beginPath(); x.arc(256, 256, 208, 0, Math.PI * 2); x.stroke();
+    x.fillStyle = "#fff";
+    const bar = (bx, h) => { x.beginPath(); x.roundRect ? x.roundRect(bx, 350 - h, 46, h, 10) : x.rect(bx, 350 - h, 46, h); x.fill(); };
+    bar(148, 52); bar(220, 112); bar(292, 178);
+    x.fillStyle = "#4FDB8B"; x.save(); x.translate(338, 136); x.rotate(0.75);
+    x.beginPath(); x.ellipse(0, 0, 24, 52, 0, 0, Math.PI * 2); x.fill(); x.restore();
+    return c;
+  }
+
+  function atlas() {
+    const c = document.createElement("canvas"); c.width = c.height = 512;
+    const x = c.getContext("2d");
+    const G = ["0","1","0","1","0","1","0","1","$","%","÷","=","Σ","7","+","×"];
+    x.fillStyle = "#fff"; x.textAlign = "center"; x.textBaseline = "middle"; x.font = `600 92px ${MONO}`;
+    G.forEach((g, i) => x.fillText(g, (i % 4) * 128 + 64, Math.floor(i / 4) * 128 + 68));
+    const t = new THREE.CanvasTexture(c); t.flipY = false; return t;
+  }
+
+  // Messages that drift through the data tunnel: what Vyta does, never how it calculates.
+  const FORMULAS = [
+    ["READ-ONLY", "never changes your Xero file"],
+    ["DAILY", "fresh scores every morning"],
+    ["ATO", "tax and super debt building up"],
+    ["CASH", "where has the cash gone?"],
+    ["SUPPLIERS", "bills slipping past 90 days"],
+    ["WHAT IF?", "test a price rise first"],
+    ["PLAIN ENGLISH", "no accounting jargon"],
+    ["TOP 3", "the issues that matter most"],
+    ["HELP", "advisers matched to you"],
+    ["PDF", "a report for your accountant"]
+  ];
+  function formulaTex(id, f) {
+    const c = document.createElement("canvas"); c.width = 1024; c.height = 128;
+    const x = c.getContext("2d");
+    x.textBaseline = "middle";
+    x.font = `600 40px ${MONO}`;
+    const w = x.measureText(id).width;
+    x.fillStyle = "rgba(79,219,139,0.14)"; x.beginPath();
+    x.roundRect ? x.roundRect(4, 34, w + 36, 60, 30) : x.rect(4, 34, w + 36, 60); x.fill();
+    x.fillStyle = "#4FDB8B"; x.fillText(id, 22, 65);
+    x.font = `500 44px ${BODY}`; x.fillStyle = "#DDE3FA"; x.fillText(f, w + 64, 66);
+    const t = new THREE.CanvasTexture(c); t.anisotropy = 4; return t;
+  }
+
+  const fontsReady = Promise.race([
+    Promise.all([document.fonts.load(`600 44px ${MONO}`), document.fonts.load(`400 44px ${MONO}`), document.fonts.load(`700 64px ${BODY}`), document.fonts.load(`500 30px ${BODY}`)]),
+    new Promise(r => setTimeout(r, 2500))
+  ]);
+
+  fontsReady.then(() => {
+    let renderer;
+    try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false }); }
+    catch (e) { const loop = () => { p = target; updateOverlay(); requestAnimationFrame(loop); }; loop(); return; }
+    const PR = Math.min(devicePixelRatio || 1, 2);
+    renderer.setPixelRatio(PR);
+    renderer.setClearColor(0x0A0F2C, 1);
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x0A0F2C, 18, 44);
+    const FOV = 50;
+    const camera = new THREE.PerspectiveCamera(FOV, 1, 0.1, 100);
+
+    // balance sheet plane
+    const SW = 8, SH = SW * SHEET_H / SHEET_W;
+    const sheetC = document.createElement("canvas"); sheetC.width = SHEET_W; sheetC.height = SHEET_H;
+    drawSheet(sheetC.getContext("2d"), false);
+    const sheetTex = new THREE.CanvasTexture(sheetC); sheetTex.anisotropy = 8;
+    const sheet = new THREE.Mesh(new THREE.PlaneGeometry(SW, SH), new THREE.MeshBasicMaterial({ map: sheetTex, transparent: true, depthWrite: false, fog: false }));
+    scene.add(sheet);
+
+    // particles: A = on the sheet's text, B = scattered through a tunnel, C = the Vyta mark
+    const textC = document.createElement("canvas"); textC.width = SHEET_W; textC.height = SHEET_H;
+    drawSheet(textC.getContext("2d"), true);
+    const A = sample(textC, N, 2, ([x, y, r, g, b]) => [(x / SHEET_W - 0.5) * SW, (0.5 - y / SHEET_H) * SH, 0.01, r, g, b]);
+    const MARK_Z = -44, MS = 6.6;
+    const C = sample(markCanvas(), N, 3, ([x, y, r, g, b]) => [(x / 512 - 0.5) * MS, (0.5 - y / 512) * MS, MARK_Z + (Math.random() - 0.5) * 0.3, r, g, b]);
+
+    const pos = new Float32Array(N * 3), pB = new Float32Array(N * 3), pC = new Float32Array(N * 3);
+    const cA = new Float32Array(N * 3), cB = new Float32Array(N * 3), cC = new Float32Array(N * 3);
+    const glyph = new Float32Array(N), rnd = new Float32Array(N);
+    for (let i = 0; i < N; i++) {
+      const a = A[i], c = C[i];
+      pos.set([a[0], a[1], a[2]], i * 3); cA.set([a[3], a[4], a[5]], i * 3);
+      const ang = Math.random() * Math.PI * 2, rad = 2.2 + Math.pow(Math.random(), 0.7) * 9;
+      pB.set([Math.cos(ang) * rad, Math.sin(ang) * rad * 0.75, 3 - Math.random() * 38], i * 3);
+      const leafy = Math.random() < 0.16;
+      cB.set(leafy ? [0.31, 0.86, 0.55] : [0.55 + Math.random() * 0.2, 0.62 + Math.random() * 0.2, 0.95], i * 3);
+      const isLeaf = c[4] > c[3] * 1.4;
+      pC.set([c[0], c[1], c[2]], i * 3); cC.set(isLeaf ? [0.31, 0.86, 0.55] : [0.93, 0.95, 1], i * 3);
+      glyph[i] = Math.random() < 0.78 ? Math.floor(Math.random() * 8) : 8 + Math.floor(Math.random() * 8);
+      rnd[i] = Math.random();
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    geo.setAttribute("aB", new THREE.BufferAttribute(pB, 3));
+    geo.setAttribute("aC", new THREE.BufferAttribute(pC, 3));
+    geo.setAttribute("cA", new THREE.BufferAttribute(cA, 3));
+    geo.setAttribute("cB", new THREE.BufferAttribute(cB, 3));
+    geo.setAttribute("cC", new THREE.BufferAttribute(cC, 3));
+    geo.setAttribute("aGlyph", new THREE.BufferAttribute(glyph, 1));
+    geo.setAttribute("aRand", new THREE.BufferAttribute(rnd, 1));
+    const uni = { uT1: { value: 0 }, uT2: { value: 0 }, uTime: { value: 0 }, uScale: { value: 1 }, uShow: { value: 0 }, uAtlas: { value: atlas() } };
+    const mat = new THREE.ShaderMaterial({
+      uniforms: uni, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+      vertexShader: `
+        attribute vec3 aB; attribute vec3 aC; attribute vec3 cA; attribute vec3 cB; attribute vec3 cC;
+        attribute float aGlyph; attribute float aRand;
+        uniform float uT1, uT2, uTime, uScale, uShow;
+        varying vec3 vColor; varying float vGlyph, vAlpha, vSolid;
+        void main() {
+          float t1 = smoothstep(0.0, 1.0, clamp(uT1 * 1.6 - aRand * 0.6, 0.0, 1.0));
+          float t2 = smoothstep(0.0, 1.0, clamp(uT2 * 1.6 - (1.0 - aRand) * 0.6, 0.0, 1.0));
+          vec3 p = mix(position, aB, t1);
+          float drift = t1 * (1.0 - t2);
+          p.x += drift * sin(uTime * 0.5 + aRand * 40.0) * 0.35;
+          p.y += drift * cos(uTime * 0.4 + aRand * 31.0) * 0.35;
+          p.z += sin(t1 * 3.14159) * (aRand - 0.5) * 5.0 * (1.0 - t2);
+          p = mix(p, aC, t2);
+          p += (1.0 - drift) * t2 * vec3(sin(uTime * 1.3 + aRand * 60.0), cos(uTime * 1.1 + aRand * 50.0), 0.0) * 0.012;
+          vec4 mv = modelViewMatrix * vec4(p, 1.0);
+          gl_Position = projectionMatrix * mv;
+          float size = mix(0.04, 0.15 + aRand * 0.13, t1);
+          size = mix(size, 0.085, t2);
+          gl_PointSize = size * uScale / -mv.z;
+          vColor = mix(mix(cA, cB, t1), cC, t2);
+          vGlyph = aGlyph;
+          vSolid = 1.0 - smoothstep(0.0, 0.35, t1);
+          vAlpha = uShow * smoothstep(0.6, 3.0, -mv.z) * mix(1.0, 0.75, drift);
+        }`,
+      fragmentShader: `
+        uniform sampler2D uAtlas;
+        varying vec3 vColor; varying float vGlyph, vAlpha, vSolid;
+        void main() {
+          vec2 cell = vec2(mod(vGlyph, 4.0), floor(vGlyph / 4.0));
+          float g = texture2D(uAtlas, (cell + gl_PointCoord) / 4.0).a;
+          float disc = 1.0 - smoothstep(0.35, 0.5, length(gl_PointCoord - 0.5));
+          float a = mix(g, disc, vSolid) * vAlpha;
+          if (a < 0.01) discard;
+          gl_FragColor = vec4(vColor * a, a);
+        }`
+    });
+    const points = new THREE.Points(geo, mat);
+    points.frustumCulled = false;
+    scene.add(points);
+
+    // formulas floating through the tunnel
+    const formulas = FORMULAS.map(([id, f], i) => {
+      const mesh = new THREE.Mesh(new THREE.PlaneGeometry(5.6, 0.7),
+        new THREE.MeshBasicMaterial({ map: formulaTex(id, f), transparent: true, depthWrite: false, opacity: 0, fog: false }));
+      mesh.userData.side = i % 2 ? 1 : -1;
+      mesh.userData.y = ((i * 0.37) % 1 - 0.5) * 4.4;
+      mesh.position.z = -5 - i * 2.7;
+      scene.add(mesh);
+      return mesh;
+    });
+
+    // subtle grid floor for depth
+    const grid = new THREE.GridHelper(120, 60, 0x2A3470, 0x1A2152);
+    grid.position.y = -6.5; grid.position.z = -20; grid.material.transparent = true; grid.material.opacity = 0.35;
+    scene.add(grid);
+
+    let vw = 0, vh = 0, camBaseZ = 14, sideX = 0;
+    const resize = () => {
+      vw = canvas.clientWidth; vh = canvas.clientHeight;
+      renderer.setSize(vw, vh, false);
+      camera.aspect = vw / vh; camera.updateProjectionMatrix();
+      uni.uScale.value = vh * PR / (2 * Math.tan(THREE.MathUtils.degToRad(FOV / 2)));
+      const narrow = vw < 760;
+      const fit = (SW * 1.12) / (2 * Math.tan(THREE.MathUtils.degToRad(FOV / 2)) * camera.aspect);
+      camBaseZ = narrow ? Math.max(15, fit) : 14;
+      sideX = narrow ? 0 : -Math.min(4.2, 0.22 * 2 * 14 * Math.tan(THREE.MathUtils.degToRad(FOV / 2)) * camera.aspect);
+      const xs = narrow ? 1.6 : 3.4;
+      formulas.forEach(f => { f.position.x = f.userData.side * xs; f.position.y = f.userData.y * (narrow ? 1.4 : 1); f.scale.setScalar(narrow ? 0.6 : 1); });
+    };
+    resize();
+    addEventListener("resize", resize);
+
+    let mx = 0, my = 0, smx = 0, smy = 0;
+    addEventListener("pointermove", e => { mx = e.clientX / innerWidth - 0.5; my = e.clientY / innerHeight - 0.5; }, { passive: true });
+
+    const clock = new THREE.Clock();
+    let running = true, looping = false;
+    const kick = () => { if (!looping) { looping = true; requestAnimationFrame(frame); } };
+    new IntersectionObserver(([e]) => { running = e.isIntersecting; if (running) kick(); }).observe(track);
+
+    function frame() {
+      if (!running) { looping = false; return; }
+      const dt = Math.min(clock.getDelta(), 0.05);
+      p += (target - p) * (reduced ? 1 : Math.min(1, dt * 5));
+      if (!reduced) uni.uTime.value += dt;
+      smx += (mx - smx) * 0.05; smy += (my - smy) * 0.05;
+
+      const t1 = ss(0.12, 0.4, p), t2 = ss(0.6, 0.86, p);
+      uni.uT1.value = t1; uni.uT2.value = t2;
+      uni.uShow.value = ss(0.08, 0.13, p);
+      sheet.material.opacity = 1 - ss(0.11, 0.2, p);
+      sheet.visible = sheet.material.opacity > 0.01;
+      sheet.rotation.y = -0.18 + smx * 0.25 - ss(0.0, 0.2, p) * 0.3;
+      sheet.rotation.x = 0.06 + smy * 0.12 + ss(0.0, 0.2, p) * 0.2;
+
+      // camera flies from in front of the sheet, through the data, to the mark
+      const fly = ss(0.13, 0.72, p);
+      const z = camBaseZ + (MARK_Z + 12 - camBaseZ) * fly - ss(0.72, 1, p) * 1.5;
+      const centre = ss(0.13, 0.3, p) * (1 - ss(0.62, 0.84, p));
+      const x = sideX * (1 - centre);
+      const narrowY = vw < 760 ? -2.4 * (1 - centre) : 0;
+      camera.position.set(x + smx * 0.6, narrowY - smy * 0.4, z);
+      camera.lookAt(x, narrowY * 0.6, z - 10);
+      camera.rotation.z = Math.sin(fly * Math.PI) * 0.06;
+      points.rotation.z = (1 - t2) * t1 * uni.uTime.value * 0.01;
+
+      const gate = ss(0.22, 0.3, p) * (1 - ss(0.64, 0.72, p));
+      formulas.forEach(f => {
+        const dz = f.position.z - camera.position.z;
+        f.material.opacity = gate * ss(-20, -13, dz) * (1 - ss(-4.5, -1.5, dz)) * 0.95;
+        f.visible = f.material.opacity > 0.01;
+        f.lookAt(camera.position);
+      });
+      grid.material.opacity = 0.3 * (1 - ss(0.75, 0.9, p));
+
+      updateOverlay();
+      renderer.render(scene, camera);
+      requestAnimationFrame(frame);
+    }
+    kick();
+  });
+})();
+</script>
 </body>
 </html>
